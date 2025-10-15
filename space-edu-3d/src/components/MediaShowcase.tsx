@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import { GLTFModelSuspense } from "@/components/Model";
+import Image from "next/image";
 
 type Props = {
   title: string;
@@ -85,7 +86,14 @@ export default function MediaShowcase({ title, description, referenceUrl, videoS
           <div className="p-2 border-b border-white/10 text-sm">Images</div>
           <div className="grid grid-cols-3 gap-3 p-3">
             {(imageSrcs.length ? imageSrcs : ["/globe.svg", "/window.svg", "/file.svg"]).map((src, i) => (
-              <img key={i} src={src} alt={`image-${i}`} className="rounded ring-1 ring-white/10" />
+              <Image
+                key={i}
+                src={src}
+                alt={`image-${i}`}
+                width={300}
+                height={200}
+                className="rounded ring-1 ring-white/10 w-full h-auto"
+              />
             ))}
           </div>
         </section>
