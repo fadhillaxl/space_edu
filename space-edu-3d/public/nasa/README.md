@@ -10,4 +10,3 @@ Usage:
 Examples:
 - `/nasa/space_shuttle.glb`
 - `/nasa/earth_diffuse.jpg`
-
