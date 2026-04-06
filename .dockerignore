@@ -1,0 +1,17 @@
+# Reduce Docker build context
+node_modules
+.next
+.git
+.gitignore
+.vercel
+.vscode
+.DS_Store
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+coverage
+build
+out
+dist
