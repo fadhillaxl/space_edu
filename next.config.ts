@@ -1,8 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // ======================
+  // SUBPATH CONFIG (WAJIB)
+  // ======================
   basePath: "/space-edu-3d",
+  assetPrefix: "/space-edu-3d/",
+
+  // ======================
+  // PRODUCTION BUILD
+  // ======================
   output: "standalone",
+
+  // ======================
+  // TRAILING SLASH (BIAR CONSISTENT DENGAN APACHE)
+  // ======================
+  trailingSlash: true,
+
+  // ======================
+  // HEADERS (PWA + CACHE CONTROL)
+  // ======================
   async headers() {
     return [
       {
@@ -27,8 +44,26 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+        ],
+      },
     ];
   },
+
+  // ======================
+  // OPTIONAL (DEBUG / STABILITY)
+  // ======================
+  reactStrictMode: true,
 };
 
 export default nextConfig;
