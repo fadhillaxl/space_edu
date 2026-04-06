@@ -274,6 +274,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       (async () => {
         const cache = await caches.open(CACHE_MEDIA);
+        const shellCache = await caches.open(CACHE_SHELL);
         try {
           const networkResponse = await fetch(request);
           // Cache only complete successful responses, not range chunks.
@@ -282,7 +283,9 @@ self.addEventListener("fetch", (event) => {
           }
           return networkResponse;
         } catch {
-          const cached = await cache.match(request, { ignoreVary: true });
+          const cachedMedia = await cache.match(request, { ignoreVary: true });
+          const cachedShell = await shellCache.match(request, { ignoreVary: true });
+          const cached = cachedMedia || cachedShell;
           if (cached) {
             if (request.headers.get("range") && request.destination === "video") {
               return createVideoRangeResponse(request, cached);

@@ -47,7 +47,7 @@ export default function RegisterSW() {
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      const swUrl = "/space-edu-3d/sw.js?v=6";
+      const swUrl = "/space-edu-3d/sw.js?v=7";
       const onSwMessage = (event: MessageEvent) => {
         const data = event.data as { type?: string; payload?: CacheStatus };
         if (data?.type === "CACHE_STATUS" && data.payload) {
