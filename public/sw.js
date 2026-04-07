@@ -20,7 +20,6 @@ const APP_SHELL_ASSETS = [
   "/space-edu-3d/video/Shuttle-launch720p.mp4",
   "/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4",
   "/space-edu-3d/models/space_shuttle_buran.glb",
-  "/space-edu-3d/models/space_shuttle_atlantis.glb",
   "/space-edu-3d/models/Satelit_Satria.glb",
   "/space-edu-3d/nasa/models/space_shuttle_atlantis.glb",
   "/space-edu-3d/nasa/models/space_shuttle_d.glb",
@@ -81,6 +80,12 @@ async function warmRouteAssets() {
   );
 }
 
+async function precacheAsset(cache, asset) {
+  const response = await fetch(asset, { cache: "no-cache" });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  await cache.put(asset, response.clone());
+}
+
 self.addEventListener("install", (event) => {
   self.skipWaiting();
   event.waitUntil(
@@ -96,7 +101,7 @@ self.addEventListener("install", (event) => {
       await Promise.all(
         APP_SHELL_ASSETS.map(async (asset) => {
           try {
-            await shellCache.add(asset);
+            await precacheAsset(shellCache, asset);
             CACHE_STATUS.cached += 1;
           } catch (err) {
             CACHE_STATUS.failed += 1;
@@ -112,7 +117,7 @@ self.addEventListener("install", (event) => {
       await Promise.all(
         MEDIA_ASSETS.map(async (asset) => {
           try {
-            await mediaCache.add(asset);
+            await precacheAsset(mediaCache, asset);
             CACHE_STATUS.cached += 1;
           } catch (err) {
             CACHE_STATUS.failed += 1;
