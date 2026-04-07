@@ -7,9 +7,9 @@ const OFFLINE_PAGE = "/space-edu-3d/offline.html";
 
 const APP_SHELL_ASSETS = [
   "/space-edu-3d/",
-  "/space-edu-3d/usa",
-  "/space-edu-3d/buran",
-  "/space-edu-3d/geo",
+  "/space-edu-3d/usa/",
+  "/space-edu-3d/buran/",
+  "/space-edu-3d/geo/",
   "/space-edu-3d/offline.html",
   "/space-edu-3d/manifest.json",
   "/space-edu-3d/globe.svg",
@@ -30,7 +30,7 @@ const MEDIA_ASSETS = APP_SHELL_ASSETS.filter((asset) =>
   asset.endsWith(".glb") ||
   asset.endsWith(".gltf")
 );
-const APP_ROUTES = ["/space-edu-3d/", "/space-edu-3d/usa", "/space-edu-3d/buran", "/space-edu-3d/geo"];
+const APP_ROUTES = ["/space-edu-3d/", "/space-edu-3d/usa/", "/space-edu-3d/buran/", "/space-edu-3d/geo/"];
 const CACHE_STATUS = {
   phase: "idle",
   total: APP_SHELL_ASSETS.length + MEDIA_ASSETS.length,
@@ -50,6 +50,7 @@ async function broadcastCacheStatus() {
 
 async function warmRouteAssets() {
   const shellCache = await caches.open(CACHE_SHELL);
+  const pageCache = await caches.open(CACHE_PAGES);
   const staticCache = await caches.open(CACHE_STATIC);
   const discovered = new Set();
 
@@ -59,6 +60,7 @@ async function warmRouteAssets() {
       if (!res.ok) continue;
 
       await shellCache.put(route, res.clone());
+      await pageCache.put(route, res.clone());
       const html = await res.text();
 
       const assetMatches = html.match(/\/space-edu-3d\/_next\/static\/[^"' )]+/g) || [];
