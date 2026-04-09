@@ -119,6 +119,23 @@ export default function Page() {
               sangat stabil pada kondisi kritis.
             </p>
           </article>
+
+          <article className="rounded-2xl border border-emerald-300/30 bg-emerald-950/20 p-5">
+            <p className="text-xs font-medium uppercase tracking-wide text-emerald-200/80">Simulasi Interaktif</p>
+            <h2 className="mt-1 text-xl font-semibold">Energia: Vertical Ascent</h2>
+            <p className="mt-2 text-white/80">
+              Coba simulasi peluncuran untuk melihat tantangan rasio dorong terhadap gravitasi pada sistem
+              roket bergaya Buran-Energia.
+            </p>
+            <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-black/40">
+              <iframe
+                title="Simulasi Rocket Launch"
+                src="/space-edu-3d/iframe/SimulasiRocketLaunch.html"
+                className="h-[760px] w-full"
+                loading="lazy"
+              />
+            </div>
+          </article>
         </section>
       </div>
     </main>

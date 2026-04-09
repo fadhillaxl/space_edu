@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buran: Vertical Hardcore</title>
+    <style>
+        :root {
+            --soviet-red: #cc0000;
+            --cyber-green: #00ff41;
+            --space-black: #0b0d17;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            font-family: 'Courier New', monospace;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Shake Effect */
+        @keyframes rumble {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, -2px); }
+            100% { transform: translate(0,0); }
+        }
+        .shaking #game-container { animation: rumble 0.08s infinite; }
+
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            background: linear-gradient(to bottom, #000 0%, #050515 70%, #1a2a6c 100%);
+            border: 4px solid #333;
+            margin-top: 10px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        /* Rocket */
+        #rocket {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 95px;
+            z-index: 5;
+        }
+
+        .rocket-body {
+            width: 100%;
+            height: 100%;
+            background: #eee;
+            border: 3px solid #555;
+            border-radius: 40% 40% 5% 5%;
+            box-shadow: inset -5px 0 10px rgba(0,0,0,0.2);
+        }
+
+        #flame {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 80px;
+            background: radial-gradient(circle, #fff, #f1c40f, #e67e22, transparent);
+            filter: blur(5px);
+            display: none;
+        }
+
+        /* HUD */
+        #hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border: 1px solid var(--soviet-red);
+            font-size: 13px;
+            color: var(--cyber-green);
+            width: 150px;
+            line-height: 1.5;
+        }
+
+        /* Fuel Bar */
+        #fuel-container {
+            position: absolute;
+            right: 20px;
+            top: 100px;
+            width: 15px;
+            height: 300px;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+
+        #fuel-bar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #f00, #0f0);
+            border-radius: 10px;
+            transition: height 0.1s;
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+            background: #000;
+            border: 3px solid var(--soviet-red);
+            padding: 25px;
+            z-index: 100;
+            width: 75%;
+        }
+
+        .controls { margin-top: 20px; }
+        
+        button#thrustBtn {
+            padding: 25px 60px;
+            font-size: 1.6rem;
+            background: var(--soviet-red);
+            color: white;
+            border: 3px solid #fff;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            box-shadow: 0 8px #000;
+            border-radius: 10px;
+        }
+
+        button#thrustBtn:active { transform: translateY(4px); box-shadow: 0 2px #000; }
+    </style>
+</head>
+<body id="mainBody">
+
+    <h2 style="color:var(--soviet-red); margin-top:15px; letter-spacing: 2px;">ENERGIA: VERTICAL ASCENT</h2>
+
+    <div id="game-container">
+        <div id="hud">
+            ALTITUDE: <span id="alt">0</span> KM<br>
+            SPEED: <span id="vel">0</span> M/S<br>
+            STATUS: <span id="status">READY</span>
+        </div>
+
+        <div id="fuel-container">
+            <div id="fuel-bar"></div>
+        </div>
+
+        <div id="message">
+            <h1 id="msg-title">REPORT</h1>
+            <p id="msg-desc"></p>
+            <button onclick="location.reload()" style="padding:10px 20px; cursor:pointer; background: #fff; border:none; font-weight:bold;">RE-RUN PROGRAM</button>
+        </div>
+
+        <div id="rocket">
+            <div id="flame"></div>
+            <div class="rocket-body"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="thrustBtn" onmousedown="startThrust()" onmouseup="stopThrust()" ontouchstart="startThrust()" ontouchend="stopThrust()">IGNITION</button>
+    </div>
+
+    <script>
+        let altitude = 0;
+        let fuel = 100;
+        let velocity = 0;
+        
+        // HARDCORE VERTICAL PHYSICS
+        const gravity = 0.42;       // Sangat berat (3x lipat standar)
+        const thrustPower = 0.45;   // Hanya sedikit lebih kuat dari gravitasi
+        const fuelConsumption = 0.38; 
+        const targetOrbit = 1100;    
+
+        let isThrusting = false;
+        let gameActive = true;
+
+        const mainBody = document.getElementById('mainBody');
+        const flame = document.getElementById('flame');
+        const fuelBar = document.getElementById('fuel-bar');
+        const statusText = document.getElementById('status');
+
+        function startThrust() { if(fuel > 0 && gameActive) isThrusting = true; }
+        function stopThrust() { isThrusting = false; }
+
+        function loop() {
+            if (!gameActive) return;
+
+            if (isThrusting && fuel > 0) {
+                // Dorongan berat
+                velocity += (thrustPower - gravity);
+                fuel -= fuelConsumption;
+                flame.style.display = 'block';
+                mainBody.classList.add('shaking');
+                statusText.innerText = "ASCENDING";
+                statusText.style.color = "#0f0";
+            } else {
+                velocity -= gravity;
+                flame.style.display = 'none';
+                mainBody.classList.remove('shaking');
+                statusText.innerText = velocity < 0 ? "FALLING" : "COASTING";
+                statusText.style.color = velocity < 0 ? "red" : "yellow";
+            }
+
+            altitude += velocity;
+            if (altitude < 0) { 
+                if (velocity < -3) {
+                    endGame("CRASH", "Roket hancur karena benturan keras!");
+                }
+                altitude = 0; 
+                velocity = 0; 
+            }
+
+            // Update UI
+            document.getElementById('alt').innerText = Math.floor(altitude);
+            document.getElementById('vel').innerText = Math.floor(velocity * 25);
+            fuelBar.style.height = fuel + '%';
+
+            // Win/Loss
+            if (altitude >= targetOrbit) {
+                endGame("SUCCESS", "Buran memasuki orbit 1100km. Selamat!");
+            } else if (fuel <= 0 && velocity <= 0 && altitude < targetOrbit) {
+                endGame("FAILED", "Kehabisan bahan bakar sebelum mencapai orbit.");
+            }
+
+            // Visual Position
+            let visualPos = 20 + (altitude * 0.4);
+            if (visualPos > 500) visualPos = 500;
+            document.getElementById('rocket').style.bottom = visualPos + 'px';
+            
+            requestAnimationFrame(loop);
+        }
+
+        function endGame(title, desc) {
+            gameActive = false;
+            mainBody.classList.remove('shaking');
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('msg-title').innerText = title;
+            document.getElementById('msg-desc').innerText = desc;
+        }
+
+        loop();
+    </script>
+</body>
+</html>
