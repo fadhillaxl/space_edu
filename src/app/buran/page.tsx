@@ -1,8 +1,104 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
 import MediaShowcase from "@/components/MediaShowcase";
 
+const BURAN_GALLERY_IMAGES = [
+  "/space-edu-3d/image/buran-gallery/buran1.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran2.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran3.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran4.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran5.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran6.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran7.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran8.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran9.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran10.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran11.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran12.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran13.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran14.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran15.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran16.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran17.jpeg",
+];
+
 export default function Page() {
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [isImageLoading, setIsImageLoading] = useState(false);
+  const [imageLoadError, setImageLoadError] = useState(false);
+
+  const totalImages = BURAN_GALLERY_IMAGES.length;
+  const currentImageSrc = useMemo(() => BURAN_GALLERY_IMAGES[currentImageIndex], [currentImageIndex]);
+
+  const openGalleryModal = useCallback(
+    (index: number) => {
+      const normalized = ((index % totalImages) + totalImages) % totalImages;
+      setCurrentImageIndex(normalized);
+      setZoom(1);
+      setImageLoadError(false);
+      setIsImageLoading(true);
+      setIsGalleryModalOpen(true);
+    },
+    [totalImages]
+  );
+
+  const closeGalleryModal = useCallback(() => {
+    setIsGalleryModalOpen(false);
+    setZoom(1);
+    setIsImageLoading(false);
+    setImageLoadError(false);
+  }, []);
+
+  const goToPrevImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    setZoom(1);
+    setImageLoadError(false);
+    setIsImageLoading(true);
+  }, [totalImages]);
+
+  const goToNextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    setZoom(1);
+    setImageLoadError(false);
+    setIsImageLoading(true);
+  }, [totalImages]);
+
+  const zoomIn = useCallback(() => setZoom((prev) => Math.min(prev + 0.25, 3)), []);
+  const zoomOut = useCallback(() => setZoom((prev) => Math.max(prev - 0.25, 0.5)), []);
+
+  const handlePreviewNavigateAndOpen = useCallback(
+    (index: number) => {
+      const gallerySection = document.getElementById("buran-gallery");
+      gallerySection?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", "#buran-gallery");
+      openGalleryModal(index);
+    },
+    [openGalleryModal]
+  );
+
+  useEffect(() => {
+    if (!isGalleryModalOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeGalleryModal();
+      if (event.key === "ArrowLeft") goToPrevImage();
+      if (event.key === "ArrowRight") goToNextImage();
+      if (event.key === "+" || event.key === "=") zoomIn();
+      if (event.key === "-") zoomOut();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isGalleryModalOpen, closeGalleryModal, goToPrevImage, goToNextImage, zoomIn, zoomOut]);
+
   return (
     <main className="p-4 text-white">
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-12">
@@ -12,7 +108,8 @@ export default function Page() {
             description="A combined presentation with video, images, and an interactive 3D viewer."
             referenceUrl="https://www.artstation.com/artwork/LznQv"
             videoSrc="/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4"
-            imageSrcs={["/space-edu-3d/globe.svg", "/space-edu-3d/window.svg", "/space-edu-3d/file.svg"]}
+            imageSrcs={BURAN_GALLERY_IMAGES}
+            onImagePreviewClick={handlePreviewNavigateAndOpen}
             modelUrl="/space-edu-3d/models/space_shuttle_buran.glb"
           />
         </section>
@@ -136,8 +233,104 @@ export default function Page() {
               />
             </div>
           </article>
+
+          <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Gallery</p>
+            <h2 className="mt-1 text-xl font-semibold">Buran Gallery</h2>
+            <p className="mt-2 text-white/80">
+              Galeri gambar dari folder <code>/public/image/buran-gallery</code>. Klik preview untuk membuka modal.
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+              {BURAN_GALLERY_IMAGES.map((src, idx) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => openGalleryModal(idx)}
+                  className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
+                >
+                  <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          </article>
         </section>
       </div>
+
+      {isGalleryModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 backdrop-blur-sm md:p-6"
+          onClick={closeGalleryModal}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Buran Gallery Modal"
+        >
+          <div
+            className="flex h-[85vh] w-full max-w-6xl flex-col rounded-lg bg-[#0b0d17] ring-1 ring-white/20"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-2 border-b border-white/10 p-3">
+              <p className="text-sm text-white/80">
+                {currentImageIndex + 1} / {totalImages}
+              </p>
+              <div className="flex items-center gap-2">
+                <button type="button" onClick={zoomOut} className="rounded bg-white/10 px-2 py-1 ring-1 ring-white/20 hover:ring-cyan-300">
+                  -
+                </button>
+                <span className="w-12 text-center text-sm">{Math.round(zoom * 100)}%</span>
+                <button type="button" onClick={zoomIn} className="rounded bg-white/10 px-2 py-1 ring-1 ring-white/20 hover:ring-cyan-300">
+                  +
+                </button>
+                <button type="button" onClick={() => setZoom(1)} className="rounded bg-white/10 px-2 py-1 text-sm ring-1 ring-white/20 hover:ring-cyan-300">
+                  Reset
+                </button>
+                <button type="button" onClick={closeGalleryModal} className="rounded bg-white/10 px-2 py-1 ring-1 ring-white/20 hover:ring-red-300">
+                  Close
+                </button>
+              </div>
+            </div>
+
+            <div className="grid min-h-0 flex-1 grid-cols-[auto_1fr_auto] items-center gap-2 p-3 md:p-4">
+              <button
+                type="button"
+                onClick={goToPrevImage}
+                className="h-10 w-10 rounded-full bg-white/10 ring-1 ring-white/20 hover:ring-cyan-300"
+                aria-label="Previous image"
+              >
+                {"<"}
+              </button>
+
+              <div className="relative flex h-full items-center justify-center overflow-auto rounded-md bg-black/40 ring-1 ring-white/10">
+                {isImageLoading && !imageLoadError && <div className="text-sm text-white/70">Loading image...</div>}
+                {imageLoadError && <div className="text-sm text-red-300">Image gagal dimuat. Coba gambar lain.</div>}
+                <img
+                  key={currentImageSrc}
+                  src={currentImageSrc}
+                  alt={`Buran ${currentImageIndex + 1}`}
+                  className={`max-h-full max-w-full object-contain transition-transform duration-200 ${imageLoadError ? "hidden" : "block"}`}
+                  style={{ transform: `scale(${zoom})`, transformOrigin: "center center" }}
+                  onLoad={() => {
+                    setIsImageLoading(false);
+                    setImageLoadError(false);
+                  }}
+                  onError={() => {
+                    setIsImageLoading(false);
+                    setImageLoadError(true);
+                  }}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={goToNextImage}
+                className="h-10 w-10 rounded-full bg-white/10 ring-1 ring-white/20 hover:ring-cyan-300"
+                aria-label="Next image"
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
