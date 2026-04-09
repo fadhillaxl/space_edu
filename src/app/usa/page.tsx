@@ -327,7 +327,7 @@ export default function Page() {
                 className="w-full aspect-video"
                 controls
                 preload="metadata"
-                src="/space-edu-3d/video/HowdidSpaceShuttleLaunchJaredOwen720p.mp4"
+                src="/space-edu-3d/video/HowdidtheSpaceShuttlelaunchwork720p.mp4"
               />
             </div>
           </div>
