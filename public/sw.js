@@ -1,4 +1,4 @@
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE_SHELL = `space-edu-shell-${VERSION}`;
 const CACHE_PAGES = `space-edu-pages-${VERSION}`;
 const CACHE_STATIC = `space-edu-static-${VERSION}`;
@@ -19,8 +19,9 @@ const APP_SHELL_ASSETS = [
   "/space-edu-3d/icons/icon-512.png",
   "/space-edu-3d/video/Shuttle-launch720p.mp4",
   "/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4",
-  "/space-edu-3d/video/Space%20Shuttle%20Launch%20Audio%20-%20play%20LOUD%20%28no%20music%29%20HD%201080p%20-%20indiegun%20%28720p%2C%20h264%29.mp4",
-  "/space-edu-3d/video/How%20did%20the%20Space%20Shuttle%20launch%20work%20-%20Jared%20Owen%20%28720p%2C%20h264%29.mp4",
+  "/space-edu-3d/video/SpaceShuttleLaunchindiegun720p.mp4",
+  "/space-edu-3d/video/HowdidtheSpaceShuttlelaunchwork720p.mp4",
+  "/space-edu-3d/video/SimulatingTheBurn-upDuringAtmospheric Reentry480.mp4",
   "/space-edu-3d/image/usa-gallery/shuttle-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-2.png",
   "/space-edu-3d/image/usa-gallery/shuttle-3.png",

@@ -7,41 +7,382 @@ import { GLTFModelSuspense } from "@/components/Model";
 
 export default function Page() {
   return (
-    <section className="grid gap-4">
-      <header>
-        <h1 className="text-2xl font-semibold">Modul Satelit GEO</h1>
-        <p className="text-white/70">Visualisasi orbit GEO mengelilingi Bumi, anotasi dan kontrol kamera.</p>
+    <main className="p-4 space-y-6 max-w-6xl mx-auto" id="top">
+      <header className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+        <h1 className="text-2xl font-semibold">Modul Satelit GEO - SATRIA-1</h1>
+        <p className="text-white/70 mt-1">
+          Visualisasi orbit GEO, misi SATRIA-1, teknologi HTS, serta modul pembanding teknologi sistem antariksa.
+        </p>
       </header>
-      <GeoScene />
-      <div className="rounded-lg ring-1 ring-white/10 overflow-hidden">
-        <div className="p-2 border-b border-white/10 text-sm">3D Viewer</div>
-        <div className="h-[500px]">
-          <Canvas shadows camera={{ position: [0, 1.5, 6], fov: 45, near: 0.1, far: 200 }}>
-            <ambientLight intensity={0.65} />
-            <directionalLight position={[5, 8, 5]} intensity={1.1} castShadow />
-            <Bounds fit clip observe margin={1.1}>
-              <Center>
-                <GLTFModelSuspense url="/space-edu-3d/models/Satelit_Satria.glb" scale={0.35} position={[0, 0, 0]} />
-              </Center>
-            </Bounds>
-            <OrbitControls
-              makeDefault
-              enableDamping
-              enablePan={false}
-              enableZoom
-              enableRotate
-              target={[0, 0, 0]}
-              minDistance={1.8}
-              maxDistance={10}
-              minPolarAngle={0.35}
-              maxPolarAngle={Math.PI - 0.35}
-              rotateSpeed={0.8}
-              zoomSpeed={0.9}
-              dampingFactor={0.08}
-            />
-          </Canvas>
+
+      <nav className="sticky top-4 z-10 rounded-lg ring-1 ring-cyan-400/30 bg-[#0b0d17]/90 backdrop-blur p-3">
+        <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Navigasi Cepat</p>
+        <div className="flex flex-wrap gap-2 text-sm">
+          <a href="#geo-visual" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Visual GEO</a>
+          <a href="#satria-overview" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Ikhtisar</a>
+          <a href="#satria-specs" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Spesifikasi</a>
+          <a href="#satria-hts" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">HTS</a>
+          <a href="#satria-ecosystem" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Pemanfaatan</a>
+          <a href="#orbiter-tech" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Detail STS</a>
         </div>
+      </nav>
+
+      <section id="geo-visual" className="grid gap-4 scroll-mt-28">
+        <GeoScene />
+        <div className="rounded-lg ring-1 ring-white/10 overflow-hidden">
+          <div className="p-2 border-b border-white/10 text-sm">3D Viewer</div>
+          <div className="h-[500px]">
+            <Canvas shadows camera={{ position: [0, 1.5, 6], fov: 45, near: 0.1, far: 200 }}>
+              <ambientLight intensity={0.65} />
+              <directionalLight position={[5, 8, 5]} intensity={1.1} castShadow />
+              <Bounds fit clip observe margin={1.1}>
+                <Center>
+                  <GLTFModelSuspense url="/space-edu-3d/models/Satelit_Satria.glb" scale={0.35} position={[0, 0, 0]} />
+                </Center>
+              </Bounds>
+              <OrbitControls
+                makeDefault
+                enableDamping
+                enablePan={false}
+                enableZoom
+                enableRotate
+                target={[0, 0, 0]}
+                minDistance={1.8}
+                maxDistance={10}
+                minPolarAngle={0.35}
+                maxPolarAngle={Math.PI - 0.35}
+                rotateSpeed={0.8}
+                zoomSpeed={0.9}
+                dampingFactor={0.08}
+              />
+            </Canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="satria-overview" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+        <h2 className="text-xl font-semibold">SATRIA-1 Mission Control</h2>
+        <p className="text-white/75 mt-2">
+          SATRIA-1 adalah satelit multifungsi Republik Indonesia untuk memangkas kesenjangan digital wilayah 3T. Operasi utama satelit berada
+          pada slot orbit geostasioner 146 derajat BT.
+        </p>
+        <p className="text-white/75 mt-2">
+          Misi ini menjadi tonggak penting infrastruktur telekomunikasi Indonesia untuk menghubungkan layanan publik secara merata dari orbit
+          geostasioner.
+        </p>
+        <div className="orbit-container mt-4">
+          <div className="earth"></div>
+          <div className="satellite-path">
+            <div className="satellite-icon"></div>
+          </div>
+          <p className="orbit-caption">Visualisasi Orbit Geostasioner (GEO)</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-3 mt-4">
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
+            <p className="text-sm text-white/70">Slot orbit</p>
+            <p className="font-semibold mt-1">146 derajat BT</p>
+          </div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
+            <p className="text-sm text-white/70">Kapasitas</p>
+            <p className="font-semibold mt-1">150 Gbps</p>
+          </div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
+            <p className="text-sm text-white/70">Target layanan</p>
+            <p className="font-semibold mt-1">150.000 titik layanan publik</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="grid md:grid-cols-2 gap-6 items-start">
+        <article className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+          <h3 className="font-semibold text-lg">Peluncuran & Wahana</h3>
+          <p className="text-white/75 mt-2">
+            SATRIA-1 diluncurkan menggunakan SpaceX Falcon 9 (B1067) dari Cape Canaveral, Florida pada 18 Juni 2023. Satelit diproduksi oleh
+            Thales Alenia Space.
+          </p>
+          <p className="text-white/75 mt-2">
+            Falcon 9 mengantar satelit ke Geostationary Transfer Orbit (GTO), lalu satelit melanjutkan fase orbit raising secara mandiri.
+          </p>
+        </article>
+
+        <article className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+          <h3 className="font-semibold text-lg">Konsep Orbit Raising</h3>
+          <p className="text-white/75 mt-2">
+            Pasca lepas dari roket, SATRIA-1 menyalakan sistem Full Electric Propulsion (EOR) untuk menaikkan orbit secara bertahap hingga
+            mencapai orbit GEO di ketinggian sekitar 35.786 km.
+          </p>
+          <p className="text-white/75 mt-2">
+            Pendekatan ini efisien untuk satelit modern dan menjadi bagian dari platform Spacebus NEO 200.
+          </p>
+        </article>
       </div>
-    </section>
+
+      <section id="satria-specs" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+        <h3 className="font-semibold text-lg">Spesifikasi Teknis & Peluncuran</h3>
+        <div className="grid md:grid-cols-2 gap-3 mt-3">
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Orbit:</strong> Geostationary Orbit (GEO)</div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Slot Orbit:</strong> 146 derajat Bujur Timur (BT)</div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Kapasitas:</strong> 150 Gbps</div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Platform:</strong> Spacebus NEO 200 (Full Electric Propulsion)</div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Satelit:</strong> Thales Alenia Space</div>
+          <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10"><strong>Roket:</strong> SpaceX Falcon 9</div>
+        </div>
+      </section>
+
+      <section id="satria-hts" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+        <h3 className="font-semibold text-lg">Teknologi High Throughput Satellite (HTS)</h3>
+        <p className="text-white/75 mt-2">
+          SATRIA-1 menggunakan arsitektur HTS dengan multiple spot beams untuk throughput tinggi dan pemanfaatan spektrum yang lebih efisien.
+        </p>
+        <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+          <li><strong>Ka-Band Spectrum:</strong> frekuensi tinggi untuk transmisi data cepat.</li>
+          <li><strong>Spot Beam Technology:</strong> frequency reuse antar area berbeda untuk meningkatkan kapasitas.</li>
+          <li><strong>Ground Segment:</strong> terhubung ke 11 stasiun bumi (gateway) di Indonesia.</li>
+          <li><strong>Bandwidth Tinggi:</strong> kapasitas lebih besar dibanding satelit komunikasi konvensional.</li>
+        </ul>
+      </section>
+
+      <section id="satria-ecosystem" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+        <h3 className="font-semibold text-lg">Pemanfaatan & Ekosistem KPBU</h3>
+        <p className="text-white/75 mt-2">
+          Proyek SATRIA-1 berjalan dengan skema KPBU/PPP. BAKTI Kominfo bertindak sebagai PJPK, sedangkan PT Satelit Nusantara Tiga sebagai
+          badan usaha pelaksana teknis.
+        </p>
+        <p className="text-white/75 mt-2">
+          Layanan difokuskan untuk sekolah, fasilitas kesehatan, kantor pemerintahan daerah, serta titik keamanan di wilayah 3T melalui skema
+          Availability Payment (AP).
+        </p>
+        <ul className="mt-3 list-disc pl-5 text-white/80 space-y-1">
+          <li><strong>Sektor Pendidikan:</strong> sekolah dan pesantren.</li>
+          <li><strong>Sektor Kesehatan:</strong> puskesmas dan rumah sakit daerah.</li>
+          <li><strong>Sektor Keamanan:</strong> pos TNI/Polri di perbatasan.</li>
+          <li><strong>Pemerintahan Daerah:</strong> kantor desa dan kantor camat.</li>
+        </ul>
+        <p className="text-white/75 mt-2">
+          Skema AP memastikan pemerintah membayar layanan berkala setelah satelit beroperasi sesuai standar, sehingga tidak membebani APBN
+          secara langsung di awal konstruksi.
+        </p>
+      </section>
+
+      <section id="orbiter-tech" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+        <h3 className="font-semibold text-lg">Detail Teknologi Space Shuttle (Referensi Perbandingan)</h3>
+        <p className="text-white/75 mt-2">
+          Bagian ini diambil dari modul detail orbiter untuk membandingkan sistem satelit modern dengan teknologi wahana antariksa berawak.
+          Arahkan kursor atau fokus untuk membuka detail.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-4 mt-4">
+          <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition">
+            <h4 className="font-semibold">Arsitektur Rangka (Airframe)</h4>
+            <p className="text-sm text-white/70 mt-1">Aluminium, penguatan titanium, dan desain delta-wing.</p>
+            <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[600px] group-hover:opacity-100 group-focus:max-h-[600px] group-focus:opacity-100 transition-all duration-300">
+              <p className="text-sm text-white/80">
+                Orbiter memakai aluminium kelas pesawat dengan penguatan titanium pada area mesin untuk menahan beban dorong yang masif.
+              </p>
+              <p className="text-sm text-white/80 mt-2">
+                Desain delta-wing memungkinkan Shuttle meluncur saat pendaratan tanpa tenaga mesin (gliding). Aluminium dipilih karena ringan,
+                tetapi butuh isolasi panas total karena dapat meleleh saat re-entry.
+              </p>
+              <ul className="mt-2 list-disc pl-5 text-sm text-white/80 space-y-1">
+                <li>Fuselage depan: kokpit bertekanan.</li>
+                <li>Mid-fuselage: ruang kargo sekitar 18 meter.</li>
+                <li>Fuselage belakang: menopang RS-25 dan OMS.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition">
+            <h4 className="font-semibold">Cargo Bay & SRMS</h4>
+            <p className="text-sm text-white/70 mt-1">Pintu kargo sebagai radiator dan SRMS/Canadarm.</p>
+            <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[700px] group-hover:opacity-100 group-focus:max-h-[700px] group-focus:opacity-100 transition-all duration-300">
+              <p className="text-sm text-white/80">
+                Pintu kargo tidak hanya menyimpan muatan, tetapi juga berfungsi sebagai radiator panas agar sistem tidak overheat.
+              </p>
+              <p className="text-sm text-white/80 mt-2">
+                Pintu kargo adalah struktur besar sepanjang 18 meter dengan motor listrik presisi tinggi. Sisi dalamnya dilapisi panel pendingin
+                untuk membuang panas elektronik ke ruang hampa.
+              </p>
+              <p className="text-sm text-white/80 mt-2">
+                SRMS/Canadarm memiliki 6 sendi, digunakan untuk melepas satelit, menangkap Teleskop Hubble, serta membantu astronot saat
+                spacewalk.
+              </p>
+              <div className="rounded-lg overflow-hidden ring-1 ring-white/10 mt-3">
+                <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/S2pE8m2R_04" title="Canadarm SRMS" allowFullScreen />
+              </div>
+            </div>
+          </section>
+
+          <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition">
+            <h4 className="font-semibold">Mesin & Propulsi</h4>
+            <p className="text-sm text-white/70 mt-1">RS-25 (LH2/LOX) dan OMS (hypergolic).</p>
+            <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[600px] group-hover:opacity-100 group-focus:max-h-[600px] group-focus:opacity-100 transition-all duration-300">
+              <ul className="list-disc pl-5 text-sm text-white/80 space-y-1">
+                <li>RS-25 memakai hidrogen cair dan oksigen cair.</li>
+                <li>OMS memakai MMH dan N2O4 yang menyala spontan saat kontak.</li>
+                <li>Sistem OMS dipakai untuk koreksi/manuver orbit setelah fase utama.</li>
+              </ul>
+              <p className="text-sm text-white/80 mt-2">
+                Berbeda dari mesin utama, bahan bakar hypergolic OMS tidak membutuhkan pemicu api (busi) sehingga sangat andal di lingkungan
+                hampa ruang angkasa.
+              </p>
+            </div>
+          </section>
+
+          <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition">
+            <h4 className="font-semibold">Kokpit & Habitability</h4>
+            <p className="text-sm text-white/70 mt-1">Flight deck, mid-deck, dan sistem LiOH.</p>
+            <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[600px] group-hover:opacity-100 group-focus:max-h-[600px] group-focus:opacity-100 transition-all duration-300">
+              <p className="text-sm text-white/80">
+                Kokpit memiliki lebih dari 2.000 saklar. Flight deck dipakai pilot/komandan untuk kontrol wahana dan operasi lengan robot.
+              </p>
+              <p className="text-sm text-white/80 mt-2">
+                Mid-deck dipakai untuk aktivitas kru, eksperimen, dan airlock keluar masuk EVA. Astronot hidup pada tekanan sekitar 1 atmosfer
+                dengan pengolah CO2 berbasis Lithium Hydroxide (LiOH).
+              </p>
+            </div>
+          </section>
+
+          <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition md:col-span-2">
+            <h4 className="font-semibold">TPS & Re-entry</h4>
+            <p className="text-sm text-white/70 mt-1">Pelindung panas hingga sekitar 1.650 derajat Celsius.</p>
+            <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[900px] group-hover:opacity-100 group-focus:max-h-[900px] group-focus:opacity-100 transition-all duration-300">
+              <p className="text-sm text-white/80">
+                Thermal Protection System (TPS) adalah teknologi kritis. Ubin silika terdiri dari sekitar 90% udara dan 10% serat silika untuk
+                isolasi panas sangat tinggi.
+              </p>
+              <div className="reentry-anim">
+                <svg className="shuttle-svg" viewBox="0 0 100 100" aria-label="Simulasi re-entry">
+                  <path d="M50,10 L80,80 L50,70 L20,80 Z" />
+                </svg>
+                <p className="text-sm font-semibold">Simulasi Re-entry: Udara Terionisasi (Plasma)</p>
+              </div>
+              <div className="rounded-lg overflow-hidden ring-1 ring-white/10 mt-3">
+                <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/52IZNyLN2w8" title="Re-entry plasma" allowFullScreen />
+              </div>
+              <div className="mt-3">
+                <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Visual Ubin TPS</p>
+                <div className="flex flex-wrap gap-1">
+                  {Array.from({ length: 24 }).map((_, i) => (
+                    <span key={i} className="thermal-tile" />
+                  ))}
+                </div>
+              </div>
+              <ul className="mt-2 list-disc pl-5 text-sm text-white/80 space-y-1">
+                <li>Sekitar 24.000 ubin unik melindungi bagian bawah orbiter.</li>
+                <li>Reinforced Carbon-Carbon (RCC) dipakai pada hidung dan leading edge sayap.</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <div className="pb-4">
+        <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">
+          Kembali ke atas
+        </a>
+      </div>
+
+      <style jsx>{`
+        .orbit-container {
+          position: relative;
+          height: 280px;
+          background: radial-gradient(circle, #1a1a2e 0%, #000 70%);
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1px solid #333;
+        }
+
+        .earth {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          background: #2a6fdb;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          box-shadow: 0 0 20px #2a6fdb;
+        }
+
+        .satellite-path {
+          position: absolute;
+          width: 220px;
+          height: 220px;
+          border: 1px dashed #555;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .satellite-icon {
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          background: #ffcc00;
+          border-radius: 2px;
+          top: -7px;
+          left: 50%;
+          animation: rotateOrbit 10s linear infinite;
+          transform-origin: 0 117px;
+        }
+
+        .orbit-caption {
+          position: absolute;
+          bottom: 8px;
+          width: 100%;
+          text-align: center;
+          font-size: 12px;
+        }
+
+        .reentry-anim {
+          width: 100%;
+          min-height: 140px;
+          background: linear-gradient(90deg, #121212, #ff4500);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 12px;
+        }
+
+        .shuttle-svg {
+          width: 60px;
+          fill: white;
+          animation: shake 0.1s infinite;
+        }
+
+        .thermal-tile {
+          width: 22px;
+          height: 22px;
+          background: #222;
+          border: 1px solid #444;
+          border-radius: 2px;
+          display: inline-block;
+        }
+
+        @keyframes rotateOrbit {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes shake {
+          0% {
+            transform: translate(1px, 1px);
+          }
+          50% {
+            transform: translate(-1px, -1px);
+          }
+          100% {
+            transform: translate(1px, -1px);
+          }
+        }
+      `}</style>
+    </main>
   );
 }
