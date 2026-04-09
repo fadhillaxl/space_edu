@@ -319,7 +319,7 @@ export default function Page() {
                 className="w-full aspect-video"
                 controls
                 preload="metadata"
-                src="/space-edu-3d/video/Space%20Shuttle%20Launch%20Audio%20-%20play%20LOUD%20%28no%20music%29%20HD%201080p%20-%20indiegun%20%28720p%2C%20h264%29.mp4"
+                src="/space-edu-3d/video/SpaceShuttleLaunchindiegun720p.mp4"
               />
             </div>
             <div className="rounded-lg overflow-hidden ring-1 ring-white/10">
@@ -327,7 +327,7 @@ export default function Page() {
                 className="w-full aspect-video"
                 controls
                 preload="metadata"
-                src="/space-edu-3d/video/How%20did%20the%20Space%20Shuttle%20launch%20work%20-%20Jared%20Owen%20%28720p%2C%20h264%29.mp4"
+                src="/space-edu-3d/video/HowdidSpaceShuttleLaunchJaredOwen720p.mp4"
               />
             </div>
           </div>
