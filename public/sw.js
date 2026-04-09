@@ -20,8 +20,8 @@ const APP_SHELL_ASSETS = [
   "/space-edu-3d/video/Shuttle-launch720p.mp4",
   "/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4",
   "/space-edu-3d/models/space_shuttle_buran.glb",
+  "/space-edu-3d/models/space_shuttle_atlantis.glb",
   "/space-edu-3d/models/Satelit_Satria.glb",
-  "/space-edu-3d/nasa/models/space_shuttle_atlantis.glb",
   "/space-edu-3d/nasa/models/space_shuttle_d.glb",
 ];
 const MEDIA_ASSETS = APP_SHELL_ASSETS.filter((asset) =>
