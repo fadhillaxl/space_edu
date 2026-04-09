@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi SATRIA-1: Konektivitas Angkasa</title>
+    <style>
+        :root {
+            --space-dark: #0b0d17;
+            --earth-blue: #2a6fdb;
+            --accent-gold: #ffcc00;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: var(--space-dark);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #000, var(--space-dark));
+        }
+        h1 { color: var(--accent-gold); font-size: 2.5em; margin-bottom: 10px; }
+        
+        /* CSS Animation for GEO Satellite */
+        .orbit-container {
+            position: relative;
+            height: 300px;
+            background: radial-gradient(circle, #1a1a2e 0%, #000 70%);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #333;
+        }
+        .earth {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--earth-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--earth-blue);
+        }
+        .satellite-path {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px dashed #555;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .satellite-icon {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+            top: -7px;
+            left: 50%;
+            animation: rotateOrbit 10s linear infinite;
+            transform-origin: 0 117px;
+        }
+        @keyframes rotateOrbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent-gold);
+        }
+        h2 { color: var(--accent-gold); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SATRIA-1 MISSION CONTROL</h1>
+    <p>Satelit Republik Indonesia - Menghubungkan Nusantara dari 146&deg; BT</p>
+</header>
+
+<div class="container">
+    
+    <div class="orbit-container">
+        <div class="earth"></div>
+        <div class="satellite-path">
+            <div class="satellite-icon"></div>
+        </div>
+        <p style="position:absolute; bottom:10px; width:100%; text-align:center; font-size:12px;">Visualisasi Orbit Geostasioner (GEO)</p>
+    </div>
+
+    <div class="grid">
+        <section class="content-card">
+            <h2>Peluncuran & Wahana</h2>
+            <p><strong>Roket:</strong> SpaceX Falcon 9 (B1067)<br>
+            <strong>Lokasi:</strong> Cape Canaveral, Florida<br>
+            <strong>Waktu:</strong> 18 Juni 2023<br>
+            <strong>Manufaktur:</strong> Thales Alenia Space</p>
+            <p>Falcon 9 membawa SATRIA-1 ke <em>Geostationary Transfer Orbit</em> (GTO) sebelum satelit melanjutkan perjalanan mandiri.</p>
+        </section>
+
+        <section class="content-card">
+            <h2>Konsep "Orbit Raising"</h2>
+            <p>Pasca lepas dari roket di GTO, SATRIA-1 melakukan fase <strong>Orbit Raising</strong>. Menggunakan sistem <em>Full Electric Propulsion</em> (EOR - Electric Orbit Raising), satelit menyalakan mesin ion kecil untuk menaikkan titik terendah orbitnya secara bertahap hingga mencapai orbit lingkaran sempurna di ketinggian 35.786 km.</p>
+        </section>
+    </div>
+
+    <section class="content-card">
+        <h2>Sistem High Throughput Satellite (HTS)</h2>
+        <p>SATRIA-1 bukan satelit komunikasi biasa. Sebagai satelit <strong>HTS</strong>, ia mampu menyediakan kapasitas 150 Gbps melalui:</p>
+        <ul>
+            <li><strong>Ka-Band Spectrum:</strong> Menggunakan frekuensi tinggi untuk transmisi data cepat.</li>
+            <li><strong>Spot Beam Technology:</strong> Membagi wilayah Indonesia menjadi banyak "titik fokus" kecil, memungkinkan penggunaan kembali frekuensi yang sama di area berbeda tanpa interferensi.</li>
+            <li><strong>Ground Segment:</strong> Terhubung dengan 11 stasiun bumi (Gateway) yang tersebar di seluruh Indonesia.</li>
+        </ul>
+    </section>
+
+    <section class="content-card">
+        <h2>Ekosistem & Pemanfaatan</h2>
+        <p>Misi ini menggunakan model <strong>KPBU (Kerjasama Pemerintah dengan Badan Usaha)</strong>. PT Satelit Nusantara Tiga mengelola teknis, sementara BAKTI Kominfo memastikan layanan menjangkau 150.000 titik layanan publik (Sekolah, RS, Kantor Pemerintahan) secara gratis di wilayah 3T.</p>
+    </section>
+
+</div>
+
+<footer>
+    <p style="text-align: center; padding: 20px; color: #777;">&copy; 2026 Dashboard Informasi Satelit Indonesia</p>
+</footer>
+
+</body>
+</html>

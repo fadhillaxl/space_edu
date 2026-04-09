@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknologi Detail Space Shuttle</title>
+    <style>
+        :root {
+            --nasa-blue: #0032a0;
+            --nasa-red: #f6625e;
+            --carbon: #121212;
+            --titanium: #e0e0e0;
+            --thermal-orange: #ff6600;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--carbon);
+            color: white;
+            line-height: 1.6;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-right: 2px solid var(--nasa-blue);
+            overflow-y: auto;
+        }
+
+        nav a {
+            display: block;
+            color: var(--titanium);
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a:hover { color: var(--nasa-red); }
+
+        main { margin-left: 280px; padding: 40px; }
+
+        .section-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: var(--nasa-blue); border-bottom: 2px solid var(--nasa-blue); padding-bottom: 10px; }
+
+        /* Arsitektur Rangka & TPS */
+        .thermal-tile {
+            width: 50px;
+            height: 50px;
+            background: #222;
+            border: 1px solid #444;
+            display: inline-block;
+            margin: 2px;
+            position: relative;
+        }
+
+        .reentry-anim {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(90deg, #121212, #ff4500);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .shuttle-svg {
+            width: 200px;
+            fill: white;
+            animation: shake 0.1s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px); }
+            50% { transform: translate(-1px, -1px); }
+            100% { transform: translate(1px, -1px); }
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 20px 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 10px;
+        }
+
+        .grid-tech {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .highlight { color: var(--nasa-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h3 style="color: var(--nasa-red)">STS TECHNOLOGY</h3>
+    <a href="#rangka">Arsitektur Rangka</a>
+    <a href="#cargo">Mekanisme Cargo & SRMS</a>
+    <a href="#mesin">Mesin & Bahan Bakar</a>
+    <a href="#kokpit">Ruang Kokpit & Kru</a>
+    <a href="#reentry">Pelindung Panas (TPS)</a>
+</nav>
+
+<main>
+    <section id="rangka" class="section-card">
+        <h2>Arsitektur Rangka (Airframe)</h2>
+        <p>Pesawat pengorbit (Orbiter) dibangun menggunakan aluminium kelas pesawat terbang, namun diperkuat dengan struktur <b>Titanium</b> di area mesin untuk menahan beban dorong yang masif.</p>
+		<p>Shuttle menggunakan desain Delta-Wing yang memungkinkannya meluncur seperti pesawat saat mendarat, meskipun tanpa tenaga mesin (hanya meluncur/gliding).</p>
+		<p>Rangka aluminium dipilih karena ringan, tetapi membutuhkan isolasi panas total karena aluminium akan meleleh pada suhu re-entry.</p>
+        <div class="grid-tech">
+            <div>
+                <ul>
+                    <li><b>Fuselage Depan:</b> Kokpit bertekanan untuk kru.</li>
+                    <li><b>Mid-Fuselage:</b> Rangka terbuka untuk menampung ruang kargo sepanjang 18 meter.</li>
+                    <li><b>Fuselage Belakang:</b> Menopang tiga mesin utama (RS-25) dan dua mesin OMS.</li>
+                </ul>
+            </div>
+            <img src="https://www.nasa.gov/wp-content/uploads/2023/03/shuttle_diagram.jpg" alt="Struktur Rangka" style="width:100%; border-radius: 10px;">
+			<img src="https://www.nasa.gov/gallery/space-shuttle-technical-diagrams/" alt="Struktur Rangka" style="width:100%; border-radius: 10px;">
+        </div>
+    </section>
+
+    <section id="cargo" class="section-card">
+        <h2>Pintu Kargo & Lengan Robot (Canadarm)</h2>
+        <p>Pintu kargo bukan hanya untuk menyimpan satelit, tapi juga berfungsi sebagai <b>Radiator panas</b>. Jika pintu tidak terbuka di orbit, Shuttle akan mengalami <i>overheat</i>.</p>
+		<p>Pintu kargo adalah struktur besar sepanjang 18 meter yang digerakkan oleh motor listrik presisi tinggi. Selain tempat kargo, sisi dalam pintu dilapisi dengan panel pendingin yang membuang panas berlebih dari sistem elektronik pesawat ke ruang hampa udara.</p>
+        <div class="grid-tech">
+            <div class="spec-card">
+                <h3>Shuttle Remote Manipulator System (SRMS)</h3>
+                <p>Dibuat oleh Kanada, lengan robot ini memiliki 6 sendi yang meniru lengan manusia. Digunakan untuk melepaskan satelit, menangkap Teleskop Hubble, hingga membantu astronot saat <i>spacewalk</i>.</p>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/S2pE8m2R_04" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="mesin" class="section-card">
+        <h2>Mesin & Propulsi</h2>
+        <p>Sistem ini menggunakan dua jenis bahan bakar berbeda untuk fase berbeda:</p>
+        <ul>
+            <li><span class="highlight">RS-25 (Main Engines):</span> Menggunakan Hidrogen Cair & Oksigen Cair dari Tangki Eksternal.</li>
+            <li><span class="highlight">OMS (Orbital Maneuvering System):</span> Dua mesin kecil di belakang menggunakan bahan bakar <i>Hypergolic</i> yang terbakar secara otomatis saat bersentuhan, digunakan untuk mengubah orbit.Berbeda dengan mesin utama, mesin OMS menggunakan bahan bakar Monomethylhydrazine (MMH) dan Nitrogen Tetroxide. Keunggulannya: bahan bakar ini tidak perlu pemicu api (busi); mereka meledak saat bertemu, sehingga sangat andal di luar angkasa yang hampa.</li>
+        </ul>
+        
+    </section>
+
+    <section id="kokpit" class="section-card">
+        <h2>Ruang Kokpit & Cara Kerja Astronot</h2>
+        <p>Kokpit Shuttle memiliki lebih dari 2.000 saklar dan kontrol manual. Terbagi menjadi dua dek:</p>
+        <div class="grid-tech">
+            <div class="spec-card">
+                <h3>Flight Deck (Atas)</h3>
+                <p>Tempat pilot dan komandan mengendalikan pesawat. Di bagian belakang dek ini terdapat jendela besar untuk memantau kargo dan mengoperasikan lengan robot.</p>
+            </div>
+            <div class="spec-card">
+                <h3>Mid-Deck (Bawah)</h3>
+                <p>Tempat astronot makan, tidur, dan melakukan eksperimen. Di sini juga terdapat <i>Airlock</i> untuk keluar menuju luar angkasa.</p>
+            </div>
+			<div class="spec-card">
+                <h3>Kehidupan di Dalam (Habitability)</h3>
+                <p>Astronot bekerja dalam lingkungan 1 atmosfer (sama dengan di bumi). Mereka menggunakan sistem pengolah karbon dioksida berbasis Lithium Hydroxide (LiOH) untuk menjaga udara tetap bersih.</p>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="reentry" class="section-card">
+        <h2>Pelindung Panas (TPS) & Re-entry</h2>
+        <p>Saat kembali ke bumi, gesekan udara menciptakan suhu hingga <span class="highlight">1.650°C</span>. Shuttle dilindungi oleh <b>Thermal Protection System (TPS)</b>.</p>
+        <p>Ini adalah teknologi paling rumit. Setiap ubin memiliki nomor seri unik karena bentuknya berbeda-beda mengikuti lekukan tubuh pesawat. Ubin ini terdiri dari 90% udara dan 10% serat silika, menjadikannya isolator panas terbaik yang pernah dibuat manusia.</p>
+        <div class="reentry-anim">
+            <svg class="shuttle-svg" viewBox="0 0 100 100">
+                <path d="M50,10 L80,80 L50,70 L20,80 Z" />
+            </svg>
+            <p style="margin-left: 20px; font-weight: bold;">Simulasi Re-entry: Udara Terionisasi (Plasma)</p>
+			<div class="video-wrapper">
+                <iframe src="https://www.youtube.com/shorts/52IZNyLN2w8" frameborder="0"></iframe>
+            </div>
+		</div>
+
+        <div class="grid-tech" style="margin-top:20px;">
+            <div class="spec-card">
+                <h3>Ubin Silika (Black Tiles)</h3>
+                <p>Sekitar 24.000 ubin unik melindungi perut pesawat. Bahan ini sangat luar biasa karena bisa langsung disentuh dengan tangan kosong hanya beberapa detik setelah keluar dari tungku panas.</p>
+            </div>
+            <div class="spec-card">
+                <h3>Reinforced Carbon-Carbon (RCC)</h3>
+                <p>Digunakan pada bagian hidung dan tepi depan sayap di mana suhu paling ekstrem terjadi.</p>
+            </div>
+        </div>
+        
+    </section>
+</main>
+
+</body>
+</html>

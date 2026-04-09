@@ -12,6 +12,7 @@ type Props = {
   referenceUrl?: string;
   videoSrc?: string; // e.g. /external/videos/buran.mp4
   imageSrcs?: string[]; // e.g. ["/images/one.jpg", ...]
+  onImagePreviewClick?: (index: number) => void;
   modelUrl?: string; // e.g. /external/models/buran.glb
   sketchfabEmbedUrl?: string; // e.g. https://sketchfab.com/models/.../embed
   sketchfabTitle?: string;
@@ -21,7 +22,7 @@ type Props = {
   sketchfabPlatformUrl?: string;
 };
 
-export default function MediaShowcase({ title, description, referenceUrl, videoSrc, imageSrcs = [], modelUrl, sketchfabEmbedUrl, sketchfabTitle = "Sketchfab Model", sketchfabModelUrl, sketchfabAuthorName, sketchfabAuthorUrl, sketchfabPlatformUrl = "https://sketchfab.com" }: Props) {
+export default function MediaShowcase({ title, description, referenceUrl, videoSrc, imageSrcs = [], onImagePreviewClick, modelUrl, sketchfabEmbedUrl, sketchfabTitle = "Sketchfab Model", sketchfabModelUrl, sketchfabAuthorName, sketchfabAuthorUrl, sketchfabPlatformUrl = "https://sketchfab.com" }: Props) {
   const fallbackPoster = "/space-edu-3d/globe.svg";
   const [videoPoster, setVideoPoster] = useState(fallbackPoster);
 
@@ -132,16 +133,24 @@ export default function MediaShowcase({ title, description, referenceUrl, videoS
 
         <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
           <div className="p-2 border-b border-white/10 text-sm">Images</div>
-          <div className="grid grid-cols-3 gap-3 p-3">
+          <div className="grid grid-cols-3 gap-3 p-3 max-h-72 overflow-y-auto">
             {(imageSrcs.length ? imageSrcs : ["/space-edu-3d/globe.svg", "/space-edu-3d/window.svg", "/space-edu-3d/file.svg"]).map((src, i) => (
-              <Image
+              <button
                 key={i}
-                src={src}
-                alt={`image-${i}`}
-                width={300}
-                height={200}
-                className="rounded ring-1 ring-white/10 w-full h-auto"
-              />
+                type="button"
+                onClick={() => onImagePreviewClick?.(i)}
+                className={`rounded ring-1 ring-white/10 overflow-hidden ${onImagePreviewClick ? "cursor-pointer hover:ring-cyan-300" : "cursor-default"}`}
+                aria-label={`Open image ${i + 1}`}
+              >
+                <Image
+                  src={src}
+                  alt={`image-${i}`}
+                  width={300}
+                  height={200}
+                  priority={i === 0}
+                  className="w-full h-auto"
+                />
+              </button>
             ))}
           </div>
         </section>
