@@ -3,24 +3,33 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import MediaShowcase from "@/components/MediaShowcase";
 
-const BURAN_GALLERY_IMAGES = [
-  "/space-edu-3d/image/buran-gallery/buran1.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran2.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran3.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran4.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran5.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran6.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran7.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran8.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran9.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran10.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran11.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran12.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran13.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran14.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran15.jpeg",
-  "/space-edu-3d/image/buran-gallery/buran16.jpeg",
+const BURAN_GALLERY_IMAGES_OVERVIEW = [
   "/space-edu-3d/image/buran-gallery/buran17.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran16.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran15.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran14.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran13.jpeg",
+];
+
+const BURAN_GALLERY_IMAGES_CLOSE = [
+  "/space-edu-3d/image/buran-gallery/buran12.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran11.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran10.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran9.jpeg",
+];
+
+const BURAN_GALLERY_IMAGES_MODULES = [
+  "/space-edu-3d/image/buran-gallery/buran8.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran7.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran6.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran5.jpeg",
+];
+
+const BURAN_GALLERY_IMAGES_LANDING = [
+  "/space-edu-3d/image/buran-gallery/buran4.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran3.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran2.jpeg",
+  "/space-edu-3d/image/buran-gallery/buran1.jpeg",
 ];
 
 export default function Page() {
@@ -30,8 +39,8 @@ export default function Page() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
 
-  const totalImages = BURAN_GALLERY_IMAGES.length;
-  const currentImageSrc = useMemo(() => BURAN_GALLERY_IMAGES[currentImageIndex], [currentImageIndex]);
+  const totalImages = BURAN_GALLERY_IMAGES_OVERVIEW.length;
+  const currentImageSrc = useMemo(() => BURAN_GALLERY_IMAGES_OVERVIEW[currentImageIndex], [currentImageIndex]);
 
   const openGalleryModal = useCallback(
     (index: number) => {
@@ -69,16 +78,6 @@ export default function Page() {
   const zoomIn = useCallback(() => setZoom((prev) => Math.min(prev + 0.25, 3)), []);
   const zoomOut = useCallback(() => setZoom((prev) => Math.max(prev - 0.25, 0.5)), []);
 
-  const handlePreviewNavigateAndOpen = useCallback(
-    (index: number) => {
-      const gallerySection = document.getElementById("buran-gallery");
-      gallerySection?.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(null, "", "#buran-gallery");
-      openGalleryModal(index);
-    },
-    [openGalleryModal]
-  );
-
   useEffect(() => {
     if (!isGalleryModalOpen) return;
 
@@ -101,20 +100,20 @@ export default function Page() {
 
   return (
     <main className="p-4 text-white">
+      <nav className="sticky top-4 z-10 rounded-lg ring-1 ring-cyan-400/30 bg-[#0b0d17]/90 backdrop-blur p-3">
+        <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Navigasi Cepat</p>
+        <div className="flex flex-wrap gap-2 text-sm">
+          <a href="#gambaran-umum"  className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Gambaran Umum</a>
+          <a href="#buran-teknologi" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Teknologi & Rekayasa</a>
+          <a href="#buran-simulasi" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Simulasi Interaktif</a>
+          <a href="#buran-peluncuran"  className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Peluncuran</a>
+          <a href="#buran-gallery" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Gallery</a>
+        </div>
+      </nav>
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-12">
-        <section className="lg:col-span-5 lg:sticky lg:top-4 lg:self-start">
-          <MediaShowcase
-            title="Energia-Buran Showcase"
-            description="A combined presentation with video, images, and an interactive 3D viewer."
-            referenceUrl="https://www.artstation.com/artwork/LznQv"
-            videoSrc="/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4"
-            imageSrcs={BURAN_GALLERY_IMAGES}
-            onImagePreviewClick={handlePreviewNavigateAndOpen}
-            modelUrl="/space-edu-3d/models/space_shuttle_buran.glb"
-          />
-        </section>
+        
 
-        <section className="space-y-4 lg:col-span-7">
+        <section id="gambaran-umum" className="space-y-4 lg:col-span-7">
           <article className="rounded-2xl border border-cyan-300/30 bg-gradient-to-br from-cyan-950/40 to-black/40 p-5">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyan-200/80">Museum Panel</p>
             <h1 className="mt-2 text-2xl font-semibold">Buran-Energia</h1>
@@ -124,9 +123,10 @@ export default function Page() {
               otomatisasi yang melampaui masanya.
             </p>
           </article>
+    </section>
 
+<section id="buran-teknologi" className="space-y-4 lg:col-span-7">
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Section I</p>
             <h2 className="mt-1 text-xl font-semibold">Arsitektur Peluncuran: Perbedaan Filosofis</h2>
             <p className="mt-2 text-white/80">
               Berbeda dengan Space Shuttle NASA yang merupakan sistem terintegrasi (orbiter bagian dari roket),
@@ -140,7 +140,6 @@ export default function Page() {
           </article>
 
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Section II</p>
             <h2 className="mt-1 text-xl font-semibold">Anatomi Teknologi: Sistem Kendali dan Otomasi</h2>
             <p className="mt-2 text-white/80">
               Keunggulan mutlak Buran ada pada otomasi penerbangan. Sistem ini dirancang untuk tetap aman saat
@@ -163,7 +162,6 @@ export default function Page() {
           </article>
 
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Section III</p>
             <h2 className="mt-1 text-xl font-semibold">Rekayasa Propulsi: Mesin RD-170</h2>
             <p className="mt-2 text-white/80">
               Di bawah roket Energia terdapat mesin RD-170, salah satu puncak rekayasa mesin roket Uni Soviet.
@@ -175,7 +173,6 @@ export default function Page() {
           </article>
 
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Section IV</p>
             <h2 className="mt-1 text-xl font-semibold">Deteksi Fakta: Mengapa Hanya Satu Penerbangan?</h2>
             <p className="mt-2 text-white/80">
               Teknologi ini hanya terbang sekali pada 15 November 1988 karena faktor lintas domain berikut.
@@ -206,6 +203,17 @@ export default function Page() {
             </div>
           </article>
 
+<section className="lg:col-span-5 lg:sticky lg:top-4 lg:self-start">
+          <MediaShowcase
+            title="Energia-Buran Showcase"
+            description="A combined presentation with video and an interactive 3D viewer."
+            referenceUrl="https://www.artstation.com/artwork/LznQv"
+            videoSrc="/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4"
+            modelUrl="/space-edu-3d/models/space_shuttle_buran.glb"
+          />
+        </section>
+
+<section id="buran-simulasi" className="space-y-4 lg:col-span-7">
           <article className="rounded-2xl border border-amber-300/30 bg-amber-950/20 p-5">
             <p className="text-xs font-medium uppercase tracking-wide text-amber-200/80">Aktivitas Edukasi</p>
             <h2 className="mt-1 text-xl font-semibold">The Automatic Landing</h2>
@@ -216,6 +224,7 @@ export default function Page() {
               sangat stabil pada kondisi kritis.
             </p>
           </article>
+</section>
 
           <article className="rounded-2xl border border-emerald-300/30 bg-emerald-950/20 p-5">
             <p className="text-xs font-medium uppercase tracking-wide text-emerald-200/80">Simulasi Interaktif</p>
@@ -235,13 +244,68 @@ export default function Page() {
           </article>
 
           <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Gallery</p>
-            <h2 className="mt-1 text-xl font-semibold">Buran Gallery</h2>
+            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
+            <h2 className="mt-1 text-xl font-semibold">Overview</h2>
             <p className="mt-2 text-white/80">
-              Galeri gambar dari folder <code>/public/image/buran-gallery</code>. Klik preview untuk membuka modal.
+              Bagian luar Buran relatif terdokumentasi dengan baik, dan saya dapat mengandalkan rencana dan foto asli. Materi referensi tentang desain interior (seperti ruang muatan dan modul) terbatas. Untuk membuat model yang meyakinkan, saya mencurahkan banyak upaya pada desain area ini.
             </p>
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-              {BURAN_GALLERY_IMAGES.map((src, idx) => (
+              {BURAN_GALLERY_IMAGES_OVERVIEW.map((src, idx) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => openGalleryModal(idx)}
+                  className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
+                >
+                  <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+</article>
+
+            <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
+            <h2 className="mt-1 text-xl font-semibold">Close-ups</h2>
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+              {BURAN_GALLERY_IMAGES_CLOSE.map((src, idx) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => openGalleryModal(idx)}
+                  className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
+                >
+                  <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+            </article>
+
+            <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
+            <h2 className="mt-1 text-xl font-semibold">Modules</h2>
+            <p className="mt-2 text-white/80">
+              Modul abu-abu adalah modul dok. Bagian bulat bawah terhubung ke kabin utama dan berisi ruang kedap udara. Bagian silindris atas berisi terowongan yang dapat diperpanjang dan dilengkapi dengan sistem dok APAS di bagian atas.
+Modul silindris, yang terletak di tengah ruang kargo, merupakan prototipe untuk modul-modul masa depan. Modul ini juga dilengkapi dengan instrumen ilmiah untuk penerbangan uji Buran.
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+              {BURAN_GALLERY_IMAGES_MODULES.map((src, idx) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => openGalleryModal(idx)}
+                  className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
+                >
+                  <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+            </article>
+
+            <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
+            <h2 className="mt-1 text-xl font-semibold">Landing Gear</h2>
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+              {BURAN_GALLERY_IMAGES_LANDING.map((src, idx) => (
                 <button
                   key={src}
                   type="button"

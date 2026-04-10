@@ -119,42 +119,51 @@ export default function MediaShowcase({ title, description, referenceUrl, videoS
         )}
       </header>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      {imageSrcs.length > 0 ? (
+        <div className="grid md:grid-cols-2 gap-6">
+          <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
+            <div className="p-2 border-b border-white/10 text-sm">Video</div>
+            <div className="p-3">
+              {videoSrc ? (
+                <video src={videoSrc} controls className="w-full rounded" poster={videoPoster} preload="metadata" />
+              ) : (
+                <div className="h-48 flex items-center justify-center text-white/60">Place video at /public/video and pass videoSrc.</div>
+              )}
+            </div>
+          </section>
+
+          <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
+            <div className="p-2 border-b border-white/10 text-sm">Images</div>
+            <div className="grid grid-cols-3 gap-3 p-3 max-h-72 overflow-y-auto">
+              {imageSrcs.map((src, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => onImagePreviewClick?.(i)}
+                  className={`rounded ring-1 ring-white/10 overflow-hidden ${onImagePreviewClick ? "cursor-pointer hover:ring-cyan-300" : "cursor-default"}`}
+                  aria-label={`Open image ${i + 1}`}
+                >
+                  <Image
+                    src={src}
+                    alt={`image-${i}`}
+                    width={300}
+                    height={200}
+                    priority={i === 0}
+                    className="w-full h-auto"
+                  />
+                </button>
+              ))}
+            </div>
+          </section>
+        </div>
+      ) : videoSrc ? (
         <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
           <div className="p-2 border-b border-white/10 text-sm">Video</div>
           <div className="p-3">
-            {videoSrc ? (
-              <video src={videoSrc} controls className="w-full rounded" poster={videoPoster} preload="metadata" />
-            ) : (
-              <div className="h-48 flex items-center justify-center text-white/60">Place video at /public/video and pass videoSrc.</div>
-            )}
+            <video src={videoSrc} controls className="w-full rounded" poster={videoPoster} preload="metadata" />
           </div>
         </section>
-
-        <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
-          <div className="p-2 border-b border-white/10 text-sm">Images</div>
-          <div className="grid grid-cols-3 gap-3 p-3 max-h-72 overflow-y-auto">
-            {(imageSrcs.length ? imageSrcs : ["/space-edu-3d/globe.svg", "/space-edu-3d/window.svg", "/space-edu-3d/file.svg"]).map((src, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => onImagePreviewClick?.(i)}
-                className={`rounded ring-1 ring-white/10 overflow-hidden ${onImagePreviewClick ? "cursor-pointer hover:ring-cyan-300" : "cursor-default"}`}
-                aria-label={`Open image ${i + 1}`}
-              >
-                <Image
-                  src={src}
-                  alt={`image-${i}`}
-                  width={300}
-                  height={200}
-                  priority={i === 0}
-                  className="w-full h-auto"
-                />
-              </button>
-            ))}
-          </div>
-        </section>
-      </div>
+      ) : null}
 
       <section className="rounded-lg ring-1 ring-white/10 overflow-hidden">
         <div className="p-2 border-b border-white/10 text-sm">3D Viewer</div>
