@@ -54,6 +54,7 @@ export default function RootLayout({
               <Link href="/usa" className="hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded px-2 py-1">USA</Link>
               <Link href="/buran" className="hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded px-2 py-1">Rusia</Link>
               <Link href="/geo" className="hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded px-2 py-1">GEO</Link>
+              <Link href="/cubesat" className="hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded px-2 py-1">CubeSat</Link>
             </nav>
           </div>
         </header>
