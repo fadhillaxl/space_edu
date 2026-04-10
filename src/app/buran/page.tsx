@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import MediaShowcase from "@/components/MediaShowcase";
 
+
 const BURAN_GALLERY_IMAGES_OVERVIEW = [
   "/space-edu-3d/image/buran-gallery/buran17.jpeg",
   "/space-edu-3d/image/buran-gallery/buran16.jpeg",
