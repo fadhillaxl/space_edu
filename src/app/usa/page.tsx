@@ -69,16 +69,6 @@ export default function Page() {
   const zoomIn = useCallback(() => setZoom((prev) => Math.min(prev + 0.25, 3)), []);
   const zoomOut = useCallback(() => setZoom((prev) => Math.max(prev - 0.25, 0.5)), []);
 
-  const handlePreviewNavigateAndOpen = useCallback(
-    (index: number) => {
-      const gallerySection = document.getElementById("usa-gallery");
-      gallerySection?.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(null, "", "#usa-gallery");
-      openGalleryModal(index);
-    },
-    [openGalleryModal]
-  );
-
   useEffect(() => {
     if (!isGalleryModalOpen) return;
 
@@ -101,21 +91,6 @@ export default function Page() {
 
   return (
     <main className="p-4 space-y-8 max-w-6xl mx-auto" id="top">
-      <MediaShowcase
-        title="USA Shuttle Showcase"
-        description="Video, images, and interactive 3D viewer for Space Shuttle Atlantis."
-        videoSrc="/space-edu-3d/video/Shuttle-launch720p.mp4"
-        imageSrcs={USA_GALLERY_IMAGES}
-        onImagePreviewClick={handlePreviewNavigateAndOpen}
-        modelUrl="/space-edu-3d/models/space_shuttle_atlantis.glb"
-      />
-
-      <div className="rounded-xl overflow-hidden ring-1 ring-white/10">
-        <div className="usa-shuttle-container">
-          <div className="usa-rocket" />
-        </div>
-      </div>
-
       <nav className="sticky top-4 z-10 rounded-lg ring-1 ring-cyan-400/30 bg-[#0b0d17]/90 backdrop-blur p-3">
         <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Navigasi Cepat</p>
         <div className="flex flex-wrap gap-2 text-sm">
@@ -126,10 +101,19 @@ export default function Page() {
           <a href="#ap101" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">AP-101</a>
           <a href="#rs25" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">RS-25</a>
           <a href="#orbiter-detail" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Detail Orbiter</a>
-          <a href="#usa-gallery" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Gallery</a>
           <a href="#launch" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Peluncuran</a>
+          <a href="#usa-gallery" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Gallery</a>
+          
         </div>
       </nav>
+      
+
+      <div className="rounded-xl overflow-hidden ring-1 ring-white/10">
+        <div className="usa-shuttle-container">
+          <div className="usa-rocket" />
+        </div>
+      </div>
+
 
       <section className="grid gap-6" aria-label="Modul edukasi Space Shuttle">
         <header className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
@@ -180,6 +164,12 @@ export default function Page() {
           </div>
         </article>
 
+<MediaShowcase
+        title="USA Shuttle Showcase"
+        description="Interactive 3D viewer for Space Shuttle Atlantis."
+        modelUrl="/space-edu-3d/models/space_shuttle_atlantis.glb"
+      />
+
         <div className="grid md:grid-cols-2 gap-6">
           <article id="history" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
             <h3 className="font-semibold text-lg">Sejarah & Latar Belakang</h3>
@@ -227,7 +217,7 @@ export default function Page() {
               Space Shuttle menggunakan sistem komputer yang sangat unik yang disebut <strong>General Purpose Computer (GPC)</strong>.
               Keandalan adalah segalanya di luar angkasa.
             </p>
-            <p className="text-xs uppercase tracking-wider text-cyan-300 mt-2">Hover / Focus untuk detail lengkap</p>
+            <p className="text-xs uppercase tracking-wider text-cyan-300 mt-2">Klik untuk detail lengkap</p>
             <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[1000px] group-hover:opacity-100 group-focus:max-h-[1000px] group-focus:opacity-100 transition-all duration-300">
               <p className="text-white/75 mt-1">
                 Sistem komputer Space Shuttle didesain dengan prinsip <strong>&quot;Fail-Operational/Fail-Safe&quot;</strong>.
@@ -265,7 +255,7 @@ export default function Page() {
             <p className="text-white/75 mt-2">
               RS-25 adalah mahakarya teknik mesin. Ini adalah mesin roket berbahan bakar cair pertama yang dapat digunakan kembali berkali-kali.
             </p>
-            <p className="text-xs uppercase tracking-wider text-cyan-300 mt-2">Hover / Focus untuk detail lengkap</p>
+            <p className="text-xs uppercase tracking-wider text-cyan-300 mt-2">Klik untuk detail lengkap</p>
             <div className="mt-3 overflow-hidden max-h-0 opacity-0 group-hover:max-h-[1200px] group-hover:opacity-100 group-focus:max-h-[1200px] group-focus:opacity-100 transition-all duration-300">
               <div className="mt-1">
                 <div className="rs25-nozzle"></div>
@@ -330,12 +320,21 @@ export default function Page() {
                 src="/space-edu-3d/video/HowdidtheSpaceShuttlelaunchwork720p.mp4"
               />
             </div>
+
+            <h3 className="font-semibold mt-4 mb-2 text-lg">Momen Peluncuran</h3>
+<p className="text-white/75">
+  Detik-detik peluncuran menjadi puncak dari seluruh rangkaian misi. Mesin utama mulai menyala, diikuti dorongan roket yang perlahan mengangkat wahana dari landasan dengan kekuatan luar biasa.
+</p>
+            <div className="rounded-lg overflow-hidden ring-1 ring-white/10">
+              <video
+                className="w-full aspect-video"
+                controls
+                preload="metadata"
+                src="/space-edu-3d/video/Shuttle-launch720p.mp4"
+              />
+            </div>
           </div>
-          <div className="mt-5">
-            <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">
-              Kembali ke atas
-            </a>
-          </div>
+          
         </article>
 
         <article id="orbiter-detail" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
@@ -457,14 +456,6 @@ export default function Page() {
                   <li><strong>RCC:</strong> tahan panas ekstrem di area frontal.</li>
                 </ul>
                 <div className="grid md:grid-cols-2 gap-4 mt-3">
-                  <div className="rounded-lg overflow-hidden ring-1 ring-white/10">
-                    <iframe
-                      className="w-full aspect-video"
-                      src="https://www.youtube.com/embed/52IZNyLN2w8"
-                      title="Simulasi re-entry"
-                      allowFullScreen
-                    />
-                  </div>
                   <div className="rounded-md bg-black/30 flex items-center justify-center p-4 ring-1 ring-white/10">
                     <p className="text-sm font-semibold">Ubin silika dan RCC menjaga orbiter saat fase panas ekstrem re-entry.</p>
                   </div>
@@ -477,7 +468,7 @@ export default function Page() {
         <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
           <h3 className="font-semibold text-lg">USA Shuttle Gallery</h3>
           <p className="text-white/75 mt-2">
-            Galeri gambar dari folder <code>/public/image/usa-gallery</code>. Klik preview untuk membuka modal full image.
+            Klik preview untuk membuka modal full image.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
             {USA_GALLERY_IMAGES.map((src, idx) => (
@@ -491,7 +482,13 @@ export default function Page() {
               </button>
             ))}
           </div>
+          
         </article>
+        <div className="mt-5">
+            <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">
+              Kembali ke atas
+            </a>
+          </div>
       </section>
 
       {isGalleryModalOpen && (

@@ -8,13 +8,6 @@ import { GLTFModelSuspense } from "@/components/Model";
 export default function Page() {
   return (
     <main className="p-4 space-y-6 max-w-6xl mx-auto" id="top">
-      <header className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
-        <h1 className="text-2xl font-semibold">Modul Satelit GEO - SATRIA-1</h1>
-        <p className="text-white/70 mt-1">
-          Visualisasi orbit GEO, misi SATRIA-1, teknologi HTS, serta modul pembanding teknologi sistem antariksa.
-        </p>
-      </header>
-
       <nav className="sticky top-4 z-10 rounded-lg ring-1 ring-cyan-400/30 bg-[#0b0d17]/90 backdrop-blur p-3">
         <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Navigasi Cepat</p>
         <div className="flex flex-wrap gap-2 text-sm">
@@ -26,39 +19,13 @@ export default function Page() {
           <a href="#orbiter-tech" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Detail STS</a>
         </div>
       </nav>
-
-      <section id="geo-visual" className="grid gap-4 scroll-mt-28">
-        <GeoScene />
-        <div className="rounded-lg ring-1 ring-white/10 overflow-hidden">
-          <div className="p-2 border-b border-white/10 text-sm">3D Viewer</div>
-          <div className="h-[500px]">
-            <Canvas shadows camera={{ position: [0, 1.5, 6], fov: 45, near: 0.1, far: 200 }}>
-              <ambientLight intensity={0.65} />
-              <directionalLight position={[5, 8, 5]} intensity={1.1} castShadow />
-              <Bounds fit clip observe margin={1.1}>
-                <Center>
-                  <GLTFModelSuspense url="/space-edu-3d/models/Satelit_Satria.glb" scale={0.35} position={[0, 0, 0]} />
-                </Center>
-              </Bounds>
-              <OrbitControls
-                makeDefault
-                enableDamping
-                enablePan={false}
-                enableZoom
-                enableRotate
-                target={[0, 0, 0]}
-                minDistance={1.8}
-                maxDistance={10}
-                minPolarAngle={0.35}
-                maxPolarAngle={Math.PI - 0.35}
-                rotateSpeed={0.8}
-                zoomSpeed={0.9}
-                dampingFactor={0.08}
-              />
-            </Canvas>
-          </div>
-        </div>
-      </section>
+      
+      <header className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+        <h1 className="text-2xl font-semibold">Modul Satelit GEO - SATRIA-1</h1>
+        <p className="text-white/70 mt-1">
+          Visualisasi orbit GEO, misi SATRIA-1, teknologi HTS, serta modul pembanding teknologi sistem antariksa.
+        </p>
+      </header>
 
       <section id="satria-overview" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
         <h2 className="text-xl font-semibold">SATRIA-1 Mission Control</h2>
@@ -117,6 +84,39 @@ export default function Page() {
         </article>
       </div>
 
+<section id="geo-visual" className="grid gap-4 scroll-mt-28">
+        <GeoScene />
+        <div className="rounded-lg ring-1 ring-white/10 overflow-hidden">
+          <div className="p-2 border-b border-white/10 text-sm">3D Viewer</div>
+          <div className="h-[500px]">
+            <Canvas shadows camera={{ position: [0, 1.5, 6], fov: 45, near: 0.1, far: 200 }}>
+              <ambientLight intensity={0.65} />
+              <directionalLight position={[5, 8, 5]} intensity={1.1} castShadow />
+              <Bounds fit clip observe margin={1.1}>
+                <Center>
+                  <GLTFModelSuspense url="/space-edu-3d/models/Satelit_Satria.glb" scale={0.35} position={[0, 0, 0]} />
+                </Center>
+              </Bounds>
+              <OrbitControls
+                makeDefault
+                enableDamping
+                enablePan={false}
+                enableZoom
+                enableRotate
+                target={[0, 0, 0]}
+                minDistance={1.8}
+                maxDistance={10}
+                minPolarAngle={0.35}
+                maxPolarAngle={Math.PI - 0.35}
+                rotateSpeed={0.8}
+                zoomSpeed={0.9}
+                dampingFactor={0.08}
+              />
+            </Canvas>
+          </div>
+        </div>
+      </section>
+
       <section id="satria-specs" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
         <h3 className="font-semibold text-lg">Spesifikasi Teknis & Peluncuran</h3>
         <div className="grid md:grid-cols-2 gap-3 mt-3">
@@ -168,7 +168,7 @@ export default function Page() {
         <h3 className="font-semibold text-lg">Detail Teknologi Space Shuttle (Referensi Perbandingan)</h3>
         <p className="text-white/75 mt-2">
           Bagian ini diambil dari modul detail orbiter untuk membandingkan sistem satelit modern dengan teknologi wahana antariksa berawak.
-          Arahkan kursor atau fokus untuk membuka detail.
+          Klik untuk membuka detail.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -206,9 +206,6 @@ export default function Page() {
                 SRMS/Canadarm memiliki 6 sendi, digunakan untuk melepas satelit, menangkap Teleskop Hubble, serta membantu astronot saat
                 spacewalk.
               </p>
-              <div className="rounded-lg overflow-hidden ring-1 ring-white/10 mt-3">
-                <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/S2pE8m2R_04" title="Canadarm SRMS" allowFullScreen />
-              </div>
             </div>
           </section>
 
@@ -256,9 +253,14 @@ export default function Page() {
                 </svg>
                 <p className="text-sm font-semibold">Simulasi Re-entry: Udara Terionisasi (Plasma)</p>
               </div>
-              <div className="rounded-lg overflow-hidden ring-1 ring-white/10 mt-3">
-                <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/52IZNyLN2w8" title="Re-entry plasma" allowFullScreen />
-              </div>
+              <div className="rounded-lg overflow-hidden ring-1 ring-white/10">
+              <video
+                className="w-full aspect-video"
+                controls
+                preload="metadata"
+                src="/space-edu-3d/video/SimulatingTheBurn-upDuringAtmosphericReentryShort.mp4"
+              />
+            </div>
               <div className="mt-3">
                 <p className="text-xs uppercase tracking-wider text-cyan-300 mb-2">Visual Ubin TPS</p>
                 <div className="flex flex-wrap gap-1">
