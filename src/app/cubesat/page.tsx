@@ -150,7 +150,7 @@ export default function Page() {
 
         <section id="gallery" className="space-y-6">
             <article className="rounded-lg ring-1 ring-white/10 bg-white/5 p-6">
-                <h2 className="text-xl font-semibold text-cyan-300 mb-4">CubeSat Gallery</h2>
+                <h2 className="text-xl font-semibold text-cyan-300 mb-4">CubeSat Illustration</h2>
                 <div className="grid gap-4 md:grid-cols-2">
                     <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/80">
                         <img
@@ -169,7 +169,6 @@ export default function Page() {
                 </div>
                 <div className="space-y-4 mt-6 text-white/75">
                     <div className="rounded-md bg-black/20 p-4 ring-1 ring-white/10">
-                        <h3 className="font-medium text-cyan-200 mb-2">NASA CubeSat Illustration</h3>
                         <p>
                             Beberapa CubeSat terlihat mengorbit di atas Bumi dengan latar ruang angkasa yang gelap dan lengkungan planet yang terlihat jelas di bawahnya. Pada salah satu bagian, tampak CubeSat lebih dekat dengan panel surya yang terbuka untuk menyerap energi matahari, sementara satelit lainnya terlihat berjajar di kejauhan. Gambaran ini menunjukkan bagaimana satelit kecil dapat bekerja secara bersamaan dalam satu orbit, baik untuk komunikasi, penelitian, maupun eksperimen teknologi, dengan desain yang ringkas namun tetap efisien.                        </p>
                     </div>
