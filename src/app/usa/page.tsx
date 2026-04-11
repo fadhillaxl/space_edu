@@ -3,25 +3,34 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import MediaShowcase from "@/components/MediaShowcase";
 
-const USA_GALLERY_IMAGES = [
+const USA_GALLERY_IMAGES_STRUKTUR_UTAMA = [
   "/space-edu-3d/image/usa-gallery/shuttle-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-2.png",
   "/space-edu-3d/image/usa-gallery/shuttle-3.png",
   "/space-edu-3d/image/usa-gallery/shuttle-4.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-5.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-6.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-7.png",
+];
+
+const USA_GALLERY_IMAGES_INTERIOR = [
   "/space-edu-3d/image/usa-gallery/shuttle-8.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-9.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-10-1.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-11-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-12-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-13-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-14-1.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-15-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-16-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-17-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-18.png",
+];
+
+const USA_GALLERY_IMAGES_TEKNOLOGI = [
+  "/space-edu-3d/image/usa-gallery/shuttle-5.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-6.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-7.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-11-1.png",
+];
+
+const USA_GALLERY_IMAGES_PELUNCURAN = [
+  "/space-edu-3d/image/usa-gallery/shuttle-9.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-10-1.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-15-1.png",
 ];
 
 export default function Page() {
@@ -30,8 +39,8 @@ export default function Page() {
   const [zoom, setZoom] = useState(1);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
-  const totalImages = USA_GALLERY_IMAGES.length;
-  const currentImageSrc = useMemo(() => USA_GALLERY_IMAGES[currentImageIndex], [currentImageIndex]);
+  const totalImages = USA_GALLERY_IMAGES_STRUKTUR_UTAMA.length;
+  const currentImageSrc = useMemo(() => USA_GALLERY_IMAGES_STRUKTUR_UTAMA[currentImageIndex], [currentImageIndex]);
 
   const openGalleryModal = useCallback(
     (index: number) => {
@@ -466,12 +475,13 @@ export default function Page() {
         </article>
 
         <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
-          <h3 className="font-semibold text-lg">USA Shuttle Gallery</h3>
+          <h2 className="font-semibold text-lg">USA Shuttle Gallery</h2>
+          <h1 className="text-2xl font-bold mt-1">Struktur Utama</h1>
           <p className="text-white/75 mt-2">
-            Klik preview untuk membuka modal full image.
+            Struktur utama menggambarkan bentuk fisik keseluruhan dari pesawat ulang-alik yang terlihat dari bagian luar. Pada bagian ini, setiap komponen seperti hidung (nose), badan (fuselage), sayap, hingga ekor dirancang secara aerodinamis agar mampu bertahan saat peluncuran, berada di orbit, hingga kembali memasuki atmosfer bumi. Melalui tampilan struktur ini, dapat dipahami bagaimana desain luar shuttle berperan penting dalam stabilitas, perlindungan, serta performa penerbangan secara keseluruhan.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
-            {USA_GALLERY_IMAGES.map((src, idx) => (
+            {USA_GALLERY_IMAGES_STRUKTUR_UTAMA.map((src, idx) => (
               <button
                 key={src}
                 type="button"
@@ -484,6 +494,69 @@ export default function Page() {
           </div>
           
         </article>
+
+<article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Interior dan Crew</h3>
+          <p className="text-white/75 mt-2">
+            Bagian interior dan crew menampilkan tata letak ruang di dalam pesawat yang digunakan oleh astronaut selama misi berlangsung. Di dalamnya terdapat cockpit sebagai pusat kendali, serta area lain seperti mid-deck yang digunakan untuk aktivitas sehari-hari. Penataan ruang ini dirancang secara efisien untuk mendukung kehidupan di lingkungan tanpa gravitasi, sekaligus memastikan seluruh kru dapat bekerja, beristirahat, dan menjalankan misi dengan aman dan nyaman.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_INTERIOR.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal(idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          
+        </article>
+
+
+        <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Sistem teknologi</h3>
+          <p className="text-white/75 mt-2">
+            Sistem teknologi menjelaskan berbagai mekanisme dan perangkat yang memungkinkan pesawat ulang-alik dapat beroperasi dengan baik. Ini mencakup sistem kendali, navigasi, kelistrikan, hingga subsistem mekanik lainnya yang bekerja secara terintegrasi. Melalui bagian ini, dapat dipahami bahwa di balik struktur fisiknya, shuttle merupakan sistem kompleks yang mengandalkan teknologi tinggi untuk mengatur pergerakan, menjaga kestabilan, serta mendukung seluruh fungsi operasional selama misi berlangsung.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_TEKNOLOGI.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal(idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          
+        </article>
+
+        <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Peluncuran</h3>
+          <p className="text-white/75 mt-2">
+            Bagian peluncuran memperlihatkan komponen-komponen yang berperan saat pesawat meninggalkan bumi menuju luar angkasa. Sistem ini melibatkan tangki bahan bakar eksternal dan roket pendorong yang memberikan tenaga dorong sangat besar pada tahap awal penerbangan. Proses peluncuran merupakan fase paling krusial karena menentukan keberhasilan shuttle mencapai orbit, sehingga seluruh komponen pada tahap ini dirancang untuk menghasilkan daya angkat maksimal sebelum akhirnya dilepaskan saat tidak lagi dibutuhkan.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_PELUNCURAN.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal(idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          
+        </article>
+
+
         <div className="mt-5">
             <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">
               Kembali ke atas
