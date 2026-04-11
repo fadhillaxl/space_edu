@@ -39,42 +39,56 @@ export default function Page() {
   const [zoom, setZoom] = useState(1);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
+  const [activeGroup, setActiveGroup] = useState<string>('');
 
-  const totalImages = BURAN_GALLERY_IMAGES_OVERVIEW.length;
-  const currentImageSrc = useMemo(() => BURAN_GALLERY_IMAGES_OVERVIEW[currentImageIndex], [currentImageIndex]);
+  const getImagesForGroup = (group: string) => {
+    switch (group) {
+      case 'Overview':
+        return BURAN_GALLERY_IMAGES_OVERVIEW;
+      case 'Close-ups':
+        return BURAN_GALLERY_IMAGES_CLOSE;
+      case 'Modules':
+        return BURAN_GALLERY_IMAGES_MODULES;
+      case 'Landing Gear':
+        return BURAN_GALLERY_IMAGES_LANDING;
+      default:
+        return [];
+    }
+  };
 
-  const openGalleryModal = useCallback(
-    (index: number) => {
-      const normalized = ((index % totalImages) + totalImages) % totalImages;
-      setCurrentImageIndex(normalized);
-      setZoom(1);
-      setImageLoadError(false);
-      setIsImageLoading(true);
-      setIsGalleryModalOpen(true);
-    },
-    [totalImages]
-  );
+  const activeGalleryImages = useMemo(() => getImagesForGroup(activeGroup), [activeGroup]);
+
+  const openGalleryModal = useCallback((galleryType: string, images: string[], index: number) => {
+    setActiveGroup(galleryType);
+    const normalized = ((index % images.length) + images.length) % images.length;
+    setCurrentImageIndex(normalized);
+    setZoom(1);
+    setImageLoadError(false);
+    setIsImageLoading(true);
+    setIsGalleryModalOpen(true);
+  }, []);
 
   const closeGalleryModal = useCallback(() => {
     setIsGalleryModalOpen(false);
     setZoom(1);
     setIsImageLoading(false);
     setImageLoadError(false);
+    setActiveGroup('');
   }, []);
 
   const goToPrevImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    setCurrentImageIndex((prev) => (prev - 1 + activeGalleryImages.length) % activeGalleryImages.length);
     setZoom(1);
     setImageLoadError(false);
     setIsImageLoading(true);
-  }, [totalImages]);
+  }, [activeGalleryImages.length]);
 
   const goToNextImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    setCurrentImageIndex((prev) => (prev + 1) % activeGalleryImages.length);
     setZoom(1);
     setImageLoadError(false);
     setIsImageLoading(true);
-  }, [totalImages]);
+  }, [activeGalleryImages.length]);
 
   const zoomIn = useCallback(() => setZoom((prev) => Math.min(prev + 0.25, 3)), []);
   const zoomOut = useCallback(() => setZoom((prev) => Math.max(prev - 0.25, 0.5)), []);
@@ -204,7 +218,7 @@ export default function Page() {
             </div>
           </article>
 
-<section className="lg:col-span-5 lg:sticky lg:top-4 lg:self-start">
+<section className="lg:col-span-5">
           <MediaShowcase
             title="Energia-Buran Showcase"
             description="A combined presentation with video and an interactive 3D viewer."
@@ -255,13 +269,14 @@ export default function Page() {
                 <button
                   key={src}
                   type="button"
-                  onClick={() => openGalleryModal(idx)}
+                  onClick={() => openGalleryModal('Overview', BURAN_GALLERY_IMAGES_OVERVIEW, idx)}
                   className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
                 >
                   <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
 </article>
 
             <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
@@ -272,13 +287,14 @@ export default function Page() {
                 <button
                   key={src}
                   type="button"
-                  onClick={() => openGalleryModal(idx)}
+                  onClick={() => openGalleryModal('Close-ups', BURAN_GALLERY_IMAGES_CLOSE, idx)}
                   className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
                 >
                   <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
             </article>
 
             <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
@@ -293,30 +309,33 @@ Modul silindris, yang terletak di tengah ruang kargo, merupakan prototipe untuk 
                 <button
                   key={src}
                   type="button"
-                  onClick={() => openGalleryModal(idx)}
+                  onClick={() => openGalleryModal('Modules', BURAN_GALLERY_IMAGES_MODULES, idx)}
                   className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
                 >
                   <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
             </article>
 
             <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
             <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
             <h2 className="mt-1 text-xl font-semibold">Landing Gear</h2>
+            <p className="mt-2 text-white/80">Sistem roda yang digunakan saat pesawat kembali ke bumi, berfungsi menopang beban, menyerap benturan, dan menjaga kestabilan saat pendaratan.</p>
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
               {BURAN_GALLERY_IMAGES_LANDING.map((src, idx) => (
                 <button
                   key={src}
                   type="button"
-                  onClick={() => openGalleryModal(idx)}
+                  onClick={() => openGalleryModal('Landing Gear', BURAN_GALLERY_IMAGES_LANDING, idx)}
                   className="block overflow-hidden rounded-md ring-1 ring-white/10 hover:ring-cyan-300 focus:outline-none focus:ring-cyan-300"
                 >
                   <img src={src} alt={`buran-${idx + 1}`} className="h-40 w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
           </article>
         </section>
       </div>
@@ -335,7 +354,7 @@ Modul silindris, yang terletak di tengah ruang kargo, merupakan prototipe untuk 
           >
             <div className="flex items-center justify-between gap-2 border-b border-white/10 p-3">
               <p className="text-sm text-white/80">
-                {currentImageIndex + 1} / {totalImages}
+                {activeGroup} - {currentImageIndex + 1} / {activeGalleryImages.length}
               </p>
               <div className="flex items-center gap-2">
                 <button type="button" onClick={zoomOut} className="rounded bg-white/10 px-2 py-1 ring-1 ring-white/20 hover:ring-cyan-300">
@@ -368,9 +387,9 @@ Modul silindris, yang terletak di tengah ruang kargo, merupakan prototipe untuk 
                 {isImageLoading && !imageLoadError && <div className="text-sm text-white/70">Loading image...</div>}
                 {imageLoadError && <div className="text-sm text-red-300">Image gagal dimuat. Coba gambar lain.</div>}
                 <img
-                  key={currentImageSrc}
-                  src={currentImageSrc}
-                  alt={`Buran ${currentImageIndex + 1}`}
+                  key={activeGalleryImages[currentImageIndex]}
+                  src={activeGalleryImages[currentImageIndex]}
+                  alt={`${activeGroup} ${currentImageIndex + 1}`}
                   className={`max-h-full max-w-full object-contain transition-transform duration-200 ${imageLoadError ? "hidden" : "block"}`}
                   style={{ transform: `scale(${zoom})`, transformOrigin: "center center" }}
                   onLoad={() => {
