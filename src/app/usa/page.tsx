@@ -3,25 +3,34 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import MediaShowcase from "@/components/MediaShowcase";
 
-const USA_GALLERY_IMAGES = [
+const USA_GALLERY_IMAGES_STRUKTUR_UTAMA = [
   "/space-edu-3d/image/usa-gallery/shuttle-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-2.png",
   "/space-edu-3d/image/usa-gallery/shuttle-3.png",
   "/space-edu-3d/image/usa-gallery/shuttle-4.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-5.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-6.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-7.png",
+];
+
+const USA_GALLERY_IMAGES_INTERIOR = [
   "/space-edu-3d/image/usa-gallery/shuttle-8.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-9.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-10-1.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-11-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-12-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-13-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-14-1.png",
-  "/space-edu-3d/image/usa-gallery/shuttle-15-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-16-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-17-1.png",
   "/space-edu-3d/image/usa-gallery/shuttle-18.png",
+];
+
+const USA_GALLERY_IMAGES_TEKNOLOGI = [
+  "/space-edu-3d/image/usa-gallery/shuttle-5.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-6.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-7.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-11-1.png",
+];
+
+const USA_GALLERY_IMAGES_PELUNCURAN = [
+  "/space-edu-3d/image/usa-gallery/shuttle-9.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-10-1.png",
+  "/space-edu-3d/image/usa-gallery/shuttle-15-1.png",
 ];
 
 export default function Page() {
@@ -30,41 +39,60 @@ export default function Page() {
   const [zoom, setZoom] = useState(1);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
-  const totalImages = USA_GALLERY_IMAGES.length;
-  const currentImageSrc = useMemo(() => USA_GALLERY_IMAGES[currentImageIndex], [currentImageIndex]);
+  const [activeGroup, setActiveGroup] = useState<string>('');
 
-  const openGalleryModal = useCallback(
-    (index: number) => {
-      const normalized = ((index % totalImages) + totalImages) % totalImages;
-      setCurrentImageIndex(normalized);
-      setZoom(1);
-      setImageLoadError(false);
-      setIsImageLoading(true);
-      setIsGalleryModalOpen(true);
-    },
-    [totalImages]
-  );
+  const getImagesForGroup = (group: string) => {
+    switch (group) {
+      case 'Struktur Utama':
+        return USA_GALLERY_IMAGES_STRUKTUR_UTAMA;
+      case 'Interior dan Crew':
+        return USA_GALLERY_IMAGES_INTERIOR;
+      case 'Sistem Teknologi':
+        return USA_GALLERY_IMAGES_TEKNOLOGI;
+      case 'Peluncuran':
+        return USA_GALLERY_IMAGES_PELUNCURAN;
+      default:
+        return [];
+    }
+  };
+
+  const activeGalleryImages = useMemo(() => getImagesForGroup(activeGroup), [activeGroup]);
+
+  const totalImages1 = USA_GALLERY_IMAGES_STRUKTUR_UTAMA.length;
+  const totalImages2 = USA_GALLERY_IMAGES_INTERIOR.length;
+  const totalImages3 = USA_GALLERY_IMAGES_TEKNOLOGI.length;
+  const totalImages4 = USA_GALLERY_IMAGES_PELUNCURAN.length;
+  const openGalleryModal = useCallback((galleryType: string, images: string[], index: number) => {
+    setActiveGroup(galleryType);
+    const normalized = ((index % images.length) + images.length) % images.length;
+    setCurrentImageIndex(normalized);
+    setZoom(1);
+    setImageLoadError(false);
+    setIsImageLoading(true);
+    setIsGalleryModalOpen(true);
+  }, []);
 
   const closeGalleryModal = useCallback(() => {
     setIsGalleryModalOpen(false);
     setZoom(1);
     setIsImageLoading(false);
     setImageLoadError(false);
+    setActiveGroup('');
   }, []);
 
   const goToPrevImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    setCurrentImageIndex((prev) => (prev - 1 + activeGalleryImages.length) % activeGalleryImages.length);
     setZoom(1);
     setImageLoadError(false);
     setIsImageLoading(true);
-  }, [totalImages]);
+  }, [activeGalleryImages.length]);
 
   const goToNextImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    setCurrentImageIndex((prev) => (prev + 1) % activeGalleryImages.length);
     setZoom(1);
     setImageLoadError(false);
     setIsImageLoading(true);
-  }, [totalImages]);
+  }, [activeGalleryImages.length]);
 
   const zoomIn = useCallback(() => setZoom((prev) => Math.min(prev + 0.25, 3)), []);
   const zoomOut = useCallback(() => setZoom((prev) => Math.max(prev - 0.25, 0.5)), []);
@@ -466,24 +494,88 @@ export default function Page() {
         </article>
 
         <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
-          <h3 className="font-semibold text-lg">USA Shuttle Gallery</h3>
+          <h2 className="font-semibold text-lg">USA Shuttle Gallery</h2>
+          <h1 className="text-2xl font-bold mt-1">Struktur Utama</h1>
           <p className="text-white/75 mt-2">
-            Klik preview untuk membuka modal full image.
+            Struktur utama menggambarkan bentuk fisik keseluruhan dari pesawat ulang-alik yang terlihat dari bagian luar. Pada bagian ini, setiap komponen seperti hidung (nose), badan (fuselage), sayap, hingga ekor dirancang secara aerodinamis agar mampu bertahan saat peluncuran, berada di orbit, hingga kembali memasuki atmosfer bumi. Melalui tampilan struktur ini, dapat dipahami bagaimana desain luar shuttle berperan penting dalam stabilitas, perlindungan, serta performa penerbangan secara keseluruhan.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
-            {USA_GALLERY_IMAGES.map((src, idx) => (
+            {USA_GALLERY_IMAGES_STRUKTUR_UTAMA.map((src, idx) => (
               <button
                 key={src}
                 type="button"
-                onClick={() => openGalleryModal(idx)}
+                onClick={() => openGalleryModal('Struktur Utama', USA_GALLERY_IMAGES_STRUKTUR_UTAMA, idx)}
                 className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
               >
                 <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
               </button>
             ))}
           </div>
-          
+          <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
         </article>
+
+<article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Interior dan Crew</h3>
+          <p className="text-white/75 mt-2">
+            Bagian interior dan crew menampilkan tata letak ruang di dalam pesawat yang digunakan oleh astronaut selama misi berlangsung. Di dalamnya terdapat cockpit sebagai pusat kendali, serta area lain seperti mid-deck yang digunakan untuk aktivitas sehari-hari. Penataan ruang ini dirancang secara efisien untuk mendukung kehidupan di lingkungan tanpa gravitasi, sekaligus memastikan seluruh kru dapat bekerja, beristirahat, dan menjalankan misi dengan aman dan nyaman.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_INTERIOR.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal('Interior dan Crew', USA_GALLERY_IMAGES_INTERIOR, idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
+        </article>
+
+
+        <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Sistem teknologi</h3>
+          <p className="text-white/75 mt-2">
+            Sistem teknologi menjelaskan berbagai mekanisme dan perangkat yang memungkinkan pesawat ulang-alik dapat beroperasi dengan baik. Ini mencakup sistem kendali, navigasi, kelistrikan, hingga subsistem mekanik lainnya yang bekerja secara terintegrasi. Melalui bagian ini, dapat dipahami bahwa di balik struktur fisiknya, shuttle merupakan sistem kompleks yang mengandalkan teknologi tinggi untuk mengatur pergerakan, menjaga kestabilan, serta mendukung seluruh fungsi operasional selama misi berlangsung.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_TEKNOLOGI.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal('Sistem Teknologi', USA_GALLERY_IMAGES_TEKNOLOGI, idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
+        </article>
+
+        <article id="usa-gallery" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+          <h3 className="font-semibold text-lg">Peluncuran</h3>
+          <p className="text-white/75 mt-2">
+            Bagian peluncuran memperlihatkan komponen-komponen yang berperan saat pesawat meninggalkan bumi menuju luar angkasa. Sistem ini melibatkan tangki bahan bakar eksternal dan roket pendorong yang memberikan tenaga dorong sangat besar pada tahap awal penerbangan. Proses peluncuran merupakan fase paling krusial karena menentukan keberhasilan shuttle mencapai orbit, sehingga seluruh komponen pada tahap ini dirancang untuk menghasilkan daya angkat maksimal sebelum akhirnya dilepaskan saat tidak lagi dibutuhkan.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
+            {USA_GALLERY_IMAGES_PELUNCURAN.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => openGalleryModal('Peluncuran', USA_GALLERY_IMAGES_PELUNCURAN, idx)}
+                className="block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 focus:outline-none"
+              >
+                <img src={src} alt={`usa-shuttle-${idx + 1}`} className="w-full h-40 object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-white/70">Klik gambar untuk membuka tampilan penuh</p>
+        </article>
+
+
         <div className="mt-5">
             <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">
               Kembali ke atas
@@ -505,7 +597,7 @@ export default function Page() {
           >
             <div className="p-3 border-b border-white/10 flex items-center justify-between gap-2">
               <p className="text-sm text-white/80">
-                {currentImageIndex + 1} / {totalImages}
+                {activeGroup} - {currentImageIndex + 1} / {activeGalleryImages.length}
               </p>
               <div className="flex items-center gap-2">
                 <button type="button" onClick={zoomOut} className="px-2 py-1 rounded bg-white/10 ring-1 ring-white/20 hover:ring-cyan-300">
@@ -542,9 +634,9 @@ export default function Page() {
                 {isImageLoading && !imageLoadError && <div className="text-sm text-white/70">Loading image...</div>}
                 {imageLoadError && <div className="text-sm text-red-300">Image gagal dimuat. Coba gambar lain.</div>}
                 <img
-                  key={currentImageSrc}
-                  src={currentImageSrc}
-                  alt={`USA Shuttle ${currentImageIndex + 1}`}
+                  key={activeGalleryImages[currentImageIndex]}
+                  src={activeGalleryImages[currentImageIndex]}
+                  alt={`${activeGroup} ${currentImageIndex + 1}`}
                   className={`max-w-full max-h-full object-contain transition-transform duration-200 ${imageLoadError ? "hidden" : "block"}`}
                   style={{ transform: `scale(${zoom})`, transformOrigin: "center center" }}
                   onLoad={() => {
