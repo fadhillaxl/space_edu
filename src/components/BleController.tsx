@@ -57,10 +57,22 @@ export default function BleController() {
     // Map commands to routes
     if (cmd === "usa") {
       router.push("/usa");
+    } else if (cmd === "usa/#tech") {
+      router.push("/usa#tech");
+    } else if (cmd === "usa/#rs25") {
+      router.push("/usa#rs25");
     } else if (cmd === "buran") {
       router.push("/buran");
+    } else if (cmd === "buran/#buran-teknologi") {
+      router.push("/buran#buran-teknologi");
+    } else if (cmd === "buran/#buran-gallery") {
+      router.push("/buran#buran-gallery");
     } else if (cmd === "geo") {
       router.push("/geo");
+    } else if (cmd === "geo/#satria-specs") {
+      router.push("/geo#satria-specs");
+    } else if (cmd === "geo/#orbiter-tech") {
+      router.push("/geo#orbiter-tech");
     }
 
     // Play feedback sound (optional, matching index.html)
