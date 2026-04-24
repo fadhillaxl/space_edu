@@ -161,6 +161,7 @@ export default function Page() {
     </p>
   </article>
 
+
   <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
     <h2 className="mt-1 text-xl font-semibold">Dari Teknologi Militer ke Luar Angkasa</h2>
     <p className="mt-2 text-white/80">
@@ -184,6 +185,24 @@ export default function Page() {
       </li>
     </ul>
   </article>
+
+<section className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-cyan-300/30 bg-cyan-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-cyan-200/80">
+      Timeline
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Perjalanan Program Buran</h2>
+
+    <ul className="mt-3 space-y-2 text-white/80">
+      <li><b>1976</b> – Uni Soviet mulai proyek Buran</li>
+      <li><b>1980-an</b> – Pengembangan intensif dan uji coba</li>
+      <li><b>1988</b> – Penerbangan pertama (sukses)</li>
+      <li><b>1991</b> – Program dihentikan (Uni Soviet bubar)</li>
+      <li><b>2002</b> – Buran asli hancur akibat runtuhnya hangar</li>
+    </ul>
+  </article>
+</section>
+
 
   <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
     <h2 className="mt-1 text-xl font-semibold">Peran Roket Energia</h2>
@@ -294,6 +313,49 @@ export default function Page() {
             </ul>
           </article>
 
+
+<section id="buran-propulsi" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-red-300/30 bg-red-950/20 p-5">
+    <p className="text-xs uppercase tracking-wide text-red-200/80">
+      Sistem Propulsi
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Mesin RD-170 & Energia</h2>
+
+    <p className="mt-2 text-white/80">
+      Energia menggunakan mesin RD-170, salah satu mesin roket paling kuat yang pernah dibuat.
+      Mesin ini menggunakan teknologi staged combustion yang meningkatkan efisiensi pembakaran.
+    </p>
+
+    <ul className="mt-3 list-disc pl-5 space-y-2 text-white/80">
+      <li>Setiap booster menghasilkan daya dorong sekitar 7.900 kN.</li>
+      <li>Menggunakan bahan bakar RP-1 (kerosin) dan oksigen cair.</li>
+      <li>Nozzle dapat digerakkan untuk kontrol arah (thrust vectoring).</li>
+      <li>Dirancang untuk stabilitas tinggi saat fase ascent.</li>
+    </ul>
+  </article>
+</section>
+
+<section id="buran-navigasi" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-purple-300/30 bg-purple-950/20 p-5">
+    <p className="text-xs uppercase tracking-wide text-purple-200/80">
+      Sistem Kendali
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Navigasi & Guidance System</h2>
+
+    <p className="mt-2 text-white/80">
+      Buran menggunakan sistem navigasi berbasis inersia yang dikombinasikan dengan
+      sensor eksternal untuk memastikan posisi dan orientasi tetap akurat selama misi.
+    </p>
+
+    <ul className="mt-3 list-disc pl-5 space-y-2 text-white/80">
+      <li>Menggunakan gyroscope dan accelerometer untuk menentukan posisi.</li>
+      <li>Dikombinasikan dengan radar altimeter saat mendekati pendaratan.</li>
+      <li>Sistem mampu melakukan koreksi otomatis terhadap gangguan eksternal.</li>
+    </ul>
+  </article>
+</section>
+
+
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
             <h2 className="mt-1 text-xl font-semibold">Deteksi Fakta: Mengapa Hanya Satu Penerbangan?</h2>
             <p className="mt-2 text-white/80">
@@ -336,6 +398,48 @@ export default function Page() {
           />
   </div>
         </section>
+
+
+<section id="buran-spesifikasi" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-yellow-300/30 bg-yellow-950/20 p-5">
+    <p className="text-xs uppercase tracking-wide text-yellow-200/80">
+      Data Teknis
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Spesifikasi Buran</h2>
+
+    <div className="mt-3 overflow-x-auto rounded-xl border border-white/10">
+      <table className="w-full text-sm text-white/85">
+        <tbody>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Panjang</td>
+            <td className="px-3 py-2">36,4 meter</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Rentang sayap</td>
+            <td className="px-3 py-2">24 meter</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Berat saat peluncuran</td>
+            <td className="px-3 py-2">±105 ton</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Kapasitas kargo</td>
+            <td className="px-3 py-2">hingga 30 ton</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Orbit</td>
+            <td className="px-3 py-2">Low Earth Orbit (LEO)</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-2">Penerbangan</td>
+            <td className="px-3 py-2">1 kali (1988, tanpa awak)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+
 
 <section id="buran-simulasi" className="space-y-4 lg:col-span-7">
           <article className="rounded-2xl border border-amber-300/30 bg-amber-950/20 p-5">

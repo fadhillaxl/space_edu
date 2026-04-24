@@ -60,6 +60,27 @@ export default function Page() {
         </div>
       </section>
 
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Dasar Orbit Satelit</h3>
+  <p className="text-white/75 mt-2">
+    Satelit seperti SATRIA-1 beroperasi di orbit geostasioner (GEO), yaitu orbit
+    pada ketinggian sekitar 35.786 km di atas permukaan bumi. Pada orbit ini,
+    satelit bergerak mengikuti rotasi bumi sehingga terlihat “diam” dari permukaan.
+  </p>
+
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li>LEO: 100 – 2.000 km (satelit pengamatan bumi, Starlink)</li>
+    <li>MEO: di antara LEO dan GEO (GPS, navigasi)</li>
+    <li><strong>GEO:</strong> 35.786 km (komunikasi seperti SATRIA-1)</li>
+  </ul>
+
+  <p className="text-white/75 mt-2">
+    Orbit GEO dipilih karena memungkinkan koneksi stabil tanpa perlu antena bergerak di bumi.
+  </p>
+</section>
+
+
       <div className="grid md:grid-cols-2 gap-6 items-start">
         <article className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
           <h3 className="font-semibold text-lg">Peluncuran & Wahana</h3>
@@ -71,6 +92,26 @@ export default function Page() {
             Falcon 9 mengantar satelit ke Geostationary Transfer Orbit (GTO), lalu satelit melanjutkan fase orbit raising secara mandiri.
           </p>
         </article>
+
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Tahapan Peluncuran Satelit</h3>
+  <p className="text-white/75 mt-2">
+    Peluncuran satelit tidak langsung menuju orbit tujuan, tetapi melalui beberapa tahap penting.
+  </p>
+
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li><strong>Vertical Ascent:</strong> roket naik lurus dari landasan</li>
+    <li><strong>Pitch Over:</strong> roket mulai miring mengikuti arah orbit</li>
+    <li><strong>Gravity Turn:</strong> memanfaatkan gravitasi bumi untuk efisiensi bahan bakar</li>
+    <li><strong>Orbit Injection:</strong> satelit dilepas ke orbit transfer (GTO)</li>
+  </ul>
+
+  <p className="text-white/75 mt-2">
+    Setelah itu, SATRIA-1 melakukan manuver sendiri untuk mencapai orbit GEO.
+  </p>
+</section>
+
 
         <article className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
           <h3 className="font-semibold text-lg">Konsep Orbit Raising</h3>
@@ -129,6 +170,46 @@ export default function Page() {
         </div>
       </section>
 
+
+      <section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Keuntungan Lokasi Peluncuran</h3>
+  <p className="text-white/75 mt-2">
+    Roket biasanya diluncurkan dari lokasi dekat khatulistiwa karena bumi
+    berputar ke arah timur, memberikan “dorongan awal” alami bagi roket.
+  </p>
+
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li>Menghemat bahan bakar peluncuran</li>
+    <li>Lebih efisien untuk menuju orbit GEO</li>
+    <li>Mengurangi kebutuhan perubahan arah orbit (delta-V)</li>
+  </ul>
+
+  <p className="text-white/75 mt-2">
+    Itulah kenapa banyak launch site besar berada di dekat garis ekuator.
+  </p>
+</section>
+
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Perjalanan Menuju Orbit GEO</h3>
+  <p className="text-white/75 mt-2">
+    Setelah diluncurkan oleh Falcon 9, SATRIA-1 tidak langsung berada di orbit
+    geostasioner. Satelit ditempatkan terlebih dahulu di orbit transfer (GTO).
+  </p>
+
+  <p className="text-white/75 mt-2">
+    Dari orbit ini, satelit menggunakan sistem propulsi listrik untuk menaikkan
+    orbit secara bertahap hingga mencapai posisi akhir di GEO.
+  </p>
+
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li>Lebih hemat bahan bakar dibanding roket kimia</li>
+    <li>Proses lebih lama (mingguan hingga bulanan)</li>
+    <li>Efisiensi tinggi untuk satelit modern</li>
+  </ul>
+</section>
+
+
       <section id="satria-hts" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
         <h3 className="font-semibold text-lg">Teknologi High Throughput Satellite (HTS)</h3>
         <p className="text-white/75 mt-2">
@@ -164,6 +245,66 @@ export default function Page() {
         </p>
       </section>
 
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Fun Fact SATRIA-1</h3>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li>Salah satu satelit internet terbesar di Asia</li>
+    <li>Melayani daerah 3T (tertinggal, terdepan, terluar)</li>
+    <li>Fokus utama: pendidikan, kesehatan, dan pemerintahan</li>
+  </ul>
+</section>
+
+          <section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Cara Kerja Satelit GEO</h3>
+  <p className="text-white/75 mt-2">
+    Satelit geostasioner seperti SATRIA-1 berada di ketinggian sekitar 35.786 km di atas permukaan bumi.
+    Pada posisi ini, satelit bergerak mengikuti rotasi bumi sehingga terlihat “diam” dari permukaan.
+  </p>
+  <p className="text-white/75 mt-2">
+    Hal ini memungkinkan antena di bumi tidak perlu bergerak mengikuti satelit, sehingga sangat cocok
+    untuk layanan komunikasi seperti internet, televisi, dan jaringan pemerintahan.
+  </p>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-1">
+    <li>Sinyal dikirim dari stasiun bumi ke satelit (uplink)</li>
+    <li>Satelit memproses dan memantulkan sinyal</li>
+    <li>Sinyal dikirim kembali ke pengguna (downlink)</li>
+  </ul>
+</section>
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Tantangan Operasi di Orbit</h3>
+  <p className="text-white/75 mt-2">
+    Mengoperasikan satelit di orbit geostasioner bukan hal mudah. SATRIA-1 harus mampu bertahan
+    di lingkungan ekstrem selama bertahun-tahun tanpa perbaikan langsung.
+  </p>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li><strong>Radiasi luar angkasa:</strong> dapat merusak komponen elektronik</li>
+    <li><strong>Suhu ekstrem:</strong> bisa sangat panas atau sangat dingin</li>
+    <li><strong>Keterlambatan sinyal (latency):</strong> karena jarak sangat jauh dari bumi</li>
+    <li><strong>Manuver posisi:</strong> harus tetap stabil di slot orbit</li>
+  </ul>
+</section>
+
+
+<section className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5">
+  <h3 className="font-semibold text-lg">Ground Segment (Stasiun Bumi)</h3>
+  <p className="text-white/75 mt-2">
+    Selain satelit di orbit, sistem SATRIA-1 juga didukung oleh jaringan stasiun bumi (gateway)
+    yang tersebar di Indonesia.
+  </p>
+  <p className="text-white/75 mt-2">
+    Gateway ini berfungsi sebagai penghubung utama antara internet global dan satelit,
+    lalu mendistribusikan koneksi ke wilayah 3T.
+  </p>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-1">
+    <li>Mengirim dan menerima data dari satelit</li>
+    <li>Mengelola trafik jaringan</li>
+    <li>Menjamin kestabilan koneksi</li>
+  </ul>
+</section>
+
+
       <section id="orbiter-tech" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
         <h3 className="font-semibold text-lg">Detail Teknologi Space Shuttle (Referensi Perbandingan)</h3>
         <p className="text-white/75 mt-2">
@@ -190,6 +331,8 @@ export default function Page() {
               </ul>
             </div>
           </section>
+
+
 
           <section tabIndex={0} className="group rounded-lg bg-black/20 p-4 ring-1 ring-white/10 hover:ring-cyan-300 focus:ring-cyan-300 outline-none transition">
             <h4 className="font-semibold">Cargo Bay & SRMS</h4>
@@ -277,6 +420,36 @@ export default function Page() {
           </section>
         </div>
       </section>
+
+      <section className="rounded-lg ring-1 ring-emerald-300/30 bg-emerald-950/20 p-5">
+  <p className="text-xs uppercase tracking-wide text-emerald-200/80">
+    Dampak Nyata
+  </p>
+  <h3 className="font-semibold text-lg">Manfaat SATRIA-1 untuk Indonesia</h3>
+  <p className="text-white/75 mt-2">
+    SATRIA-1 dirancang untuk mengurangi kesenjangan digital di wilayah 3T
+    (terdepan, terluar, tertinggal).
+  </p>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li><strong>Pendidikan:</strong> akses internet untuk sekolah terpencil</li>
+    <li><strong>Kesehatan:</strong> mendukung telemedicine</li>
+    <li><strong>Pemerintahan:</strong> digitalisasi layanan publik</li>
+    <li><strong>Keamanan:</strong> komunikasi di wilayah perbatasan</li>
+  </ul>
+  <p className="text-white/75 mt-2">
+    Dengan ini, satelit tidak hanya teknologi, tapi juga solusi nyata untuk pemerataan akses digital.
+  </p>
+</section>
+
+<section className="rounded-lg ring-1 ring-white/10 bg-black/30 p-5">
+  <h3 className="font-semibold text-lg">Fakta Singkat SATRIA-1</h3>
+  <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
+    <li>Salah satu satelit internet terbesar di Asia Tenggara</li>
+    <li>Menggunakan teknologi full electric propulsion</li>
+    <li>Dirancang beroperasi lebih dari 15 tahun</li>
+    <li>Menjangkau ratusan ribu titik layanan publik</li>
+  </ul>
+</section>
 
       <div className="pb-4">
         <a href="#top" className="inline-flex text-sm px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/20 hover:ring-cyan-300">

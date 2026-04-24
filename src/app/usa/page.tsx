@@ -200,6 +200,23 @@ export default function Page() {
         modelUrl="/space-edu-3d/models/space_shuttle_atlantis.glb"
       />
 
+      <section className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-blue-300/30 bg-blue-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-blue-200/80">
+      Timeline
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Perjalanan Space Shuttle</h2>
+
+    <ul className="mt-3 space-y-2 text-white/80">
+      <li><b>1972</b> – Program Shuttle resmi dimulai</li>
+      <li><b>1981</b> – Penerbangan pertama (Columbia)</li>
+      <li><b>1986</b> – Tragedi Challenger</li>
+      <li><b>1998</b> – Mulai misi pembangunan ISS</li>
+      <li><b>2011</b> – Program resmi dihentikan</li>
+    </ul>
+  </article>
+</section>
+
         <div className="grid md:grid-cols-2 gap-6">
           <article id="history" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
             <h3 className="font-semibold text-lg">Sejarah & Latar Belakang</h3>
@@ -501,6 +518,25 @@ export default function Page() {
           </div>
           
         </article>
+
+
+<section className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-purple-300/30 bg-purple-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-purple-200/80">
+      Fakta Singkat
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Space Shuttle dalam Angka</h2>
+
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-white/80">
+      <li>Total misi: 135 penerbangan</li>
+      <li>Kapasitas awak: hingga 7 astronot</li>
+      <li>Kecepatan orbit: ± 28.000 km/jam</li>
+      <li>Tinggi maksimum orbit: ± 600 km</li>
+      <li>Digunakan selama ± 30 tahun</li>
+    </ul>
+  </article>
+</section>
+
 
         <article id="orbiter-detail" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
           <h3 className="font-semibold text-lg">Detail Teknologi Orbiter (Hover Learning)</h3>
