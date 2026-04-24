@@ -174,7 +174,9 @@ export default function Page() {
           <h3 className="font-semibold text-lg">Home - Gambaran Umum Program</h3>
           <p className="text-white/75 mt-2">
             Selamat datang di modul interaktif sistem transportasi ruang angkasa (STS) Amerika Serikat. Space Shuttle adalah pesawat luar
-            angkasa pertama yang dapat digunakan kembali (reusable) yang mengubah cara manusia mengakses orbit bumi rendah.
+            angkasa pertama yang dapat digunakan kembali (reusable) yang mengubah cara manusia mengakses orbit bumi rendah.   Sistem ini terdiri dari berbagai komponen seperti struktur utama, tangki bahan bakar, sistem propulsi, 
+  serta teknologi perlindungan panas yang akan dijelaskan lebih detail pada bagian berikutnya.
+
           </p>
           <div className="grid md:grid-cols-3 gap-3 mt-3">
             <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
@@ -202,37 +204,172 @@ export default function Page() {
           <article id="history" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
             <h3 className="font-semibold text-lg">Sejarah & Latar Belakang</h3>
             <p className="text-white/75 mt-2">
-              Setelah program Apollo (pendaratan di bulan), NASA membutuhkan cara yang lebih murah dan rutin untuk mengirim astronot dan kargo
-              ke luar angkasa.
+              Setelah program Apollo yang berhasil mendaratkan manusia di bulan, NASA menghadapi tantangan baru yaitu bagaimana
+  membuat sistem transportasi luar angkasa yang lebih efisien dan dapat digunakan berulang kali.
+
             </p>
             <p className="text-white/75 mt-2">
               Ide awalnya adalah membuat &quot;bus luar angkasa&quot;. Lima pengorbit utama yang pernah terbang adalah <strong>Columbia, Challenger,
               Discovery, Atlantis</strong>, dan <strong>Endeavour</strong>.
             </p>
             <p className="text-white/75 mt-2">
-              Meskipun penuh prestasi, program ini juga mengalami dua tragedi besar (Challenger 1986 dan Columbia 2003) yang memberikan
-              pelajaran berharga bagi keselamatan penerbangan antariksa modern.
+            Selama lebih dari 30 tahun operasional, terdapat lima orbiter utama yaitu <strong>Columbia, Challenger, Discovery, Atlantis</strong>,
+  dan <strong>Endeavour</strong>. Shuttle digunakan untuk berbagai misi penting seperti peluncuran satelit, pembangunan 
+  <strong> International Space Station (ISS)</strong>, serta perbaikan teleskop luar angkasa.
             </p>
+            <p className="text-white/75 mt-2">
+  Program ini juga memberikan pelajaran besar dalam aspek keselamatan setelah terjadinya tragedi Challenger (1986)
+  dan Columbia (2003), yang kemudian mendorong peningkatan standar keamanan dalam eksplorasi luar angkasa modern.
+</p>
+<p className="text-white/75 mt-2">
+  Perkembangan teknologi roket sendiri tidak terjadi secara instan. Konsep dasar roket modern pertama kali 
+  dijelaskan oleh Konstantin Tsiolkovsky pada akhir abad ke-19 melalui teori persamaan roket yang menjadi 
+  fondasi dalam perhitungan propulsi hingga saat ini.
+</p>
+
+<p className="text-white/75 mt-2">
+  Pada tahun 1926, Robert H. Goddard berhasil meluncurkan roket berbahan bakar cair pertama di dunia, 
+  yang menjadi titik awal pengembangan sistem roket modern. Teknologi ini kemudian berkembang pesat 
+  selama Perang Dunia II melalui roket V-2 yang dikembangkan oleh Wernher von Braun.
+</p>
+
+<p className="text-white/75 mt-2">
+  Setelah perang, teknologi roket beralih dari kepentingan militer menjadi eksplorasi luar angkasa, 
+  yang pada akhirnya melahirkan berbagai program besar seperti Apollo dan Space Shuttle.
+</p>
           </article>
+
+          
+<article id="tokoh" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+  <h3 className="font-semibold text-lg">Tokoh Penting dalam Perkembangan Roket</h3>
+  <p className="text-white/75 mt-2">
+    Perkembangan teknologi roket tidak terlepas dari kontribusi para ilmuwan yang menjadi pelopor dalam bidang ini.
+  </p>
+
+  <div className="grid md:grid-cols-3 gap-4 mt-4">
+    
+    <div className="rounded-lg bg-black/20 p-4 ring-1 ring-white/10">
+      <img 
+        src="/space-edu-3d/image/usa-gallery/tsiolkovsky.jpg" 
+        alt="Konstantin Tsiolkovsky"
+        className="w-full h-40 object-contain  rounded-md p-2"
+      />
+      <h4 className="mt-3 font-semibold">Konstantin Tsiolkovsky</h4>
+      <p className="text-sm text-white/70 mt-1">
+        Bapak teori roket modern yang memperkenalkan konsep dasar propulsi roket dan perjalanan luar angkasa.
+      </p>
+    </div>
+
+    <div className="rounded-lg bg-black/20 p-4 ring-1 ring-white/10">
+      <img 
+        src="/space-edu-3d/image/usa-gallery/goddard.jpg" 
+        alt="Robert Goddard"
+        className="w-full h-40 object-contain rounded-md p-2"
+      />
+      <h4 className="mt-3 font-semibold">Robert H. Goddard</h4>
+      <p className="text-sm text-white/70 mt-1">
+        Ilmuwan yang berhasil meluncurkan roket berbahan bakar cair pertama pada tahun 1926.
+      </p>
+    </div>
+
+    <div className="rounded-lg bg-black/20 p-4 ring-1 ring-white/10">
+      <img 
+        src="/space-edu-3d/image/usa-gallery/vonbraun.jpg"
+        alt="Wernher von Braun"
+        className="w-full h-40 object-contain rounded-md p-2"
+      />
+      <h4 className="mt-3 font-semibold">Wernher von Braun</h4>
+      <p className="text-sm text-white/70 mt-1">
+        Tokoh utama dalam pengembangan roket modern dan program luar angkasa NASA.
+      </p>
+    </div>
+
+  </div>
+</article>
+
 
           <article id="tech" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
             <h3 className="font-semibold text-lg">Teknologi Roket (3 Komponen Utama)</h3>
-            <p className="text-white/75 mt-2">Space Shuttle bukan sekadar pesawat, melainkan sistem tiga komponen utama:</p>
-            <ul className="mt-3 list-disc pl-5 text-white/80 space-y-2">
-              <li>
-                <strong>1. Orbiter:</strong> Pesawat yang menampung kru dan kargo. Menggunakan ubin keramik khusus untuk menahan suhu ekstrem
-                saat masuk kembali ke atmosfer.
-              </li>
-              <li>
-                <strong>2. External Tank (ET):</strong> Tangki oranye besar berisi hidrogen cair dan oksigen cair. Ini adalah satu-satunya
-                bagian yang tidak bisa digunakan kembali.
-              </li>
-              <li>
-                <strong>3. Solid Rocket Boosters (SRB):</strong> Dua roket putih di samping yang memberikan 71% dorongan saat lepas landas.
-              </li>
-            </ul>
+<p className="text-white/75 mt-2">
+  Space Shuttle merupakan sistem terintegrasi yang terdiri dari tiga komponen utama yang bekerja secara bersamaan
+  saat proses peluncuran hingga mencapai orbit.
+</p>
+
+<ul className="mt-3 list-disc pl-5 text-white/80 space-y-3">
+  <li>
+    <strong>Orbiter:</strong> 
+    Bagian utama yang membawa astronaut, sistem kontrol, serta muatan. 
+    Dilengkapi dengan Thermal Protection System (TPS) berupa ubin keramik untuk menahan suhu ekstrem saat re-entry.
+  </li>
+
+  <li>
+    <strong>External Tank (ET):</strong> 
+    Tangki bahan bakar utama yang menyimpan <strong>Liquid Hydrogen (LH2)</strong> dan 
+    <strong> Liquid Oxygen (LOX)</strong>. Tangki ini menjadi sumber energi utama bagi mesin RS-25 selama peluncuran.
+  </li>
+
+  <li>
+    <strong>Solid Rocket Boosters (SRB):</strong> 
+    Dua roket pendorong berbahan bakar padat yang memberikan sekitar <strong>70% daya dorong awal</strong> 
+    saat lepas landas, sebelum akhirnya dilepas dan jatuh kembali ke bumi.
+  </li>
+</ul>
+
+<p className="text-white/75 mt-3">
+  Sistem bahan bakar pada Space Shuttle menggunakan kombinasi bahan bakar cair dan padat. 
+  Mesin utama RS-25 menggunakan LH2 dan LOX yang menghasilkan energi besar dengan emisi utama berupa uap air.
+</p>
+
+<p className="text-white/75 mt-2">
+  Sementara itu, Solid Rocket Booster menggunakan bahan bakar padat berbasis ammonium perchlorate 
+  yang memberikan dorongan awal sangat kuat saat lepas landas.
+</p>
+
+<p className="text-white/75 mt-2">
+  Kombinasi ini dipilih karena mampu memberikan keseimbangan antara efisiensi, daya dorong, 
+  dan kestabilan selama fase peluncuran.
+</p>
           </article>
         </div>
+
+        <article id="tank" className="rounded-lg ring-1 ring-white/10 bg-white/5 p-5 scroll-mt-28">
+  <h3 className="font-semibold text-lg">External Tank (Tanki Bahan Bakar)</h3>
+
+  <p className="text-white/75 mt-2">
+    External Tank merupakan komponen terbesar dalam sistem Space Shuttle yang berfungsi sebagai tempat 
+    penyimpanan bahan bakar utama selama proses peluncuran.
+  </p>
+
+  <p className="text-white/75 mt-2">
+    Tanki ini menyimpan dua jenis bahan bakar kriogenik yaitu <strong>Liquid Hydrogen (LH2)</strong> 
+    dan <strong>Liquid Oxygen (LOX)</strong> yang digunakan oleh mesin utama RS-25.
+  </p>
+
+  <div className="mt-3 grid md:grid-cols-2 gap-3">
+    <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
+      <p className="text-sm font-medium">Struktur</p>
+      <ul className="text-sm text-white/75 mt-1 list-disc pl-4">
+        <li>LOX Tank (bagian atas)</li>
+        <li>LH2 Tank (bagian bawah)</li>
+        <li>Intertank (penghubung)</li>
+      </ul>
+    </div>
+
+    <div className="rounded-md bg-black/20 p-3 ring-1 ring-white/10">
+      <p className="text-sm font-medium">Fakta Teknis</p>
+      <ul className="text-sm text-white/75 mt-1 list-disc pl-4">
+        <li>Suhu LH2 mencapai -253°C</li>
+        <li>Bagian terbesar dari shuttle</li>
+        <li>Tidak reusable (sekali pakai)</li>
+      </ul>
+    </div>
+  </div>
+
+  <p className="text-white/75 mt-3">
+    Meskipun ukurannya sangat besar, tanki ini dirancang sangat ringan menggunakan material aluminium alloy 
+    agar tidak menambah beban berlebih saat peluncuran.
+  </p>
+</article>
 
         <div className="grid md:grid-cols-2 gap-6 items-start">
           <article
@@ -328,9 +465,9 @@ export default function Page() {
             Momen peluncuran ikonik terakhir Space Shuttle Atlantis (STS-135) pada 2011 menandai berakhirnya era Shuttle.
           </p>
           <p className="text-white/75 mt-2">
-            Peluncuran melibatkan launchpad, lokasi pengisian bahan bakar, under ground command center, fasilitas storage, fasilitas rocket
-            erection, penangkal petir, supply air jumlah besar dan lain sebagainya.
-          </p>
+              Proses peluncuran Space Shuttle merupakan tahap paling kompleks dan krusial dalam seluruh misi. 
+  Dalam waktu kurang dari 10 menit, shuttle harus mencapai kecepatan lebih dari 28.000 km/jam 
+  untuk dapat memasuki orbit bumi.          </p>
           <div className="grid md:grid-cols-2 gap-4 mt-4">
             <div className="rounded-lg overflow-hidden ring-1 ring-white/10">
               <video

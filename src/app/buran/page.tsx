@@ -125,7 +125,7 @@ export default function Page() {
           <a href="#buran-gallery" className="px-3 py-1 rounded-md bg-white/5 ring-1 ring-white/15 hover:ring-cyan-300">Gallery</a>
         </div>
       </nav>
-      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-12">
+      <div className="mx-auto max-w-7xl space-y-6">
         
 
         <section id="gambaran-umum" className="space-y-4 lg:col-span-7">
@@ -139,6 +139,113 @@ export default function Page() {
             </p>
           </article>
     </section>
+
+
+<section id="buran-sejarah" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-indigo-300/30 bg-indigo-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-indigo-200/80">
+      Latar Belakang Historis
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Perang Dingin & Perlombaan Teknologi</h2>
+    <p className="mt-2 text-white/80">
+      Program Buran lahir pada puncak Perang Dingin, ketika Amerika Serikat dan Uni Soviet
+      berlomba menguasai teknologi luar angkasa. Setelah keberhasilan program Apollo dan
+      munculnya Space Shuttle milik NASA, Uni Soviet melihat adanya potensi ancaman militer
+      dari wahana yang dapat digunakan ulang tersebut.
+    </p>
+    <p className="mt-2 text-white/80">
+      Space Shuttle dianggap bukan hanya kendaraan ilmiah, tetapi juga berpotensi membawa
+      muatan militer, melakukan pengintaian, bahkan misi strategis dari orbit. Hal ini mendorong
+      Uni Soviet untuk mengembangkan sistem tandingan dengan kemampuan yang setara—bahkan
+      dalam beberapa aspek, lebih unggul.
+    </p>
+  </article>
+
+  <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
+    <h2 className="mt-1 text-xl font-semibold">Dari Teknologi Militer ke Luar Angkasa</h2>
+    <p className="mt-2 text-white/80">
+      Akar dari teknologi Buran tidak lepas dari pengembangan militer Soviet, khususnya
+      dalam bidang roket balistik antar benua (ICBM). Teknologi roket awal yang digunakan
+      untuk membawa hulu ledak nuklir kemudian dikembangkan menjadi kendaraan peluncur
+      luar angkasa.
+    </p>
+
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-white/80">
+      <li>
+        Teknologi roket berasal dari pengembangan misil seperti R-7, yang juga digunakan
+        untuk meluncurkan satelit pertama dunia, Sputnik.
+      </li>
+      <li>
+        Struktur tangki bahan bakar (tank) bertekanan tinggi dikembangkan dari kebutuhan
+        penyimpanan bahan bakar kriogenik seperti oksigen cair dan hidrogen cair.
+      </li>
+      <li>
+        Sistem kontrol dan navigasi berasal dari teknologi militer yang menuntut presisi tinggi.
+      </li>
+    </ul>
+  </article>
+
+  <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
+    <h2 className="mt-1 text-xl font-semibold">Peran Roket Energia</h2>
+    <p className="mt-2 text-white/80">
+      Berbeda dengan pendekatan Amerika, Uni Soviet mengembangkan roket Energia sebagai
+      sistem peluncur utama yang terpisah dari wahana Buran. Energia dirancang sebagai
+      roket super heavy-lift yang mampu membawa berbagai jenis muatan, termasuk Buran
+      maupun modul luar angkasa lainnya.
+    </p>
+
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-white/80">
+      <li>
+        Menggunakan empat booster berbasis mesin RD-170 dengan daya dorong sangat besar.
+      </li>
+      <li>
+        Tahap inti menggunakan bahan bakar hidrogen cair dan oksigen cair untuk efisiensi tinggi.
+      </li>
+      <li>
+        Desain modular memungkinkan roket digunakan untuk berbagai misi, tidak hanya Buran.
+      </li>
+    </ul>
+  </article>
+
+  <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
+    <h2 className="mt-1 text-xl font-semibold">Struktur Tank & Sistem Bahan Bakar</h2>
+    <p className="mt-2 text-white/80">
+      Salah satu komponen penting dalam sistem Energia adalah tangki bahan bakar berukuran
+      besar yang dirancang untuk menyimpan propelan kriogenik. Tangki ini harus mampu
+      menahan suhu ekstrem sekaligus tekanan tinggi selama peluncuran.
+    </p>
+
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-white/80">
+      <li>
+        Tangki hidrogen cair disimpan pada suhu sekitar -253°C, membutuhkan isolasi termal tinggi.
+      </li>
+      <li>
+        Tangki oksigen cair berada pada suhu sekitar -183°C dan berfungsi sebagai oksidator utama.
+      </li>
+      <li>
+        Desain struktur ringan namun kuat menjadi kunci agar rasio dorong tetap optimal.
+      </li>
+    </ul>
+  </article>
+
+  <article className="rounded-2xl border border-red-300/30 bg-red-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-red-200/80">
+      Titik Balik Sejarah
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Akhir Program Buran</h2>
+    <p className="mt-2 text-white/80">
+      Meskipun secara teknologi sangat maju, program Buran hanya melakukan satu kali
+      penerbangan tanpa awak pada tahun 1988. Setelah itu, krisis ekonomi dan runtuhnya
+      Uni Soviet pada tahun 1991 menyebabkan proyek ini dihentikan.
+    </p>
+    <p className="mt-2 text-white/80">
+      Pada tahun 2002, unit asli Buran hancur akibat runtuhnya hangar di Baikonur,
+      menandai akhir simbolis dari salah satu proyek luar angkasa paling ambisius
+      dalam sejarah.
+    </p>
+  </article>
+</section>
+
 
 <section id="buran-teknologi" className="space-y-4 lg:col-span-7">
           <article className="rounded-2xl border border-white/15 bg-black/30 p-5">
@@ -218,7 +325,8 @@ export default function Page() {
             </div>
           </article>
 
-<section className="lg:col-span-5">
+<section className="grid gap-6 lg:grid-cols-12">
+  <div className="lg:col-span-7 space-y-4">
           <MediaShowcase
             title="Energia-Buran Showcase"
             description="A combined presentation with video and an interactive 3D viewer."
@@ -226,6 +334,7 @@ export default function Page() {
             videoSrc="/space-edu-3d/video/RocketLaunchEnergia-Buran720.mp4"
             modelUrl="/space-edu-3d/models/space_shuttle_buran.glb"
           />
+  </div>
         </section>
 
 <section id="buran-simulasi" className="space-y-4 lg:col-span-7">
@@ -257,6 +366,114 @@ export default function Page() {
               />
             </div>
           </article>
+
+
+<section id="buran-misi" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-cyan-300/30 bg-cyan-950/20 p-5">
+    <p className="text-xs uppercase tracking-wide text-cyan-200/80">
+      Alur Operasional
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Tahapan Misi Buran</h2>
+
+    <p className="mt-2 text-white/80">
+      Misi Buran dirancang sebagai sistem otomatis penuh, dimulai dari peluncuran
+      hingga pendaratan tanpa intervensi manusia secara langsung.
+    </p>
+
+    <ol className="mt-4 space-y-3 text-white/80">
+      <li>
+        <strong>1. Liftoff (Peluncuran)</strong><br/>
+        Roket Energia menghasilkan daya dorong besar untuk membawa Buran keluar dari atmosfer bumi.
+      </li>
+
+      <li>
+        <strong>2. Ascent Phase</strong><br/>
+        Booster terpisah secara bertahap, sementara tahap inti terus mendorong hingga mencapai orbit rendah bumi.
+      </li>
+
+      <li>
+        <strong>3. Orbit Operation</strong><br/>
+        Buran melakukan manuver di orbit dan mengandalkan sistem komputer untuk navigasi dan stabilisasi.
+      </li>
+
+      <li>
+        <strong>4. Re-entry</strong><br/>
+        Wahana memasuki atmosfer dengan sudut tertentu untuk menghindari panas berlebih akibat gesekan udara.
+      </li>
+
+      <li>
+        <strong>5. Automatic Landing</strong><br/>
+        Sistem komputer mengendalikan pendaratan sepenuhnya, termasuk koreksi arah akibat angin samping.
+      </li>
+    </ol>
+  </article>
+</section>
+
+
+<section id="buran-fakta" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-emerald-300/30 bg-emerald-950/20 p-5">
+    <p className="text-xs uppercase tracking-wide text-emerald-200/80">
+      Fakta Unik
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Fakta Menarik Buran</h2>
+
+    <ul className="mt-3 list-disc pl-5 space-y-2 text-white/80">
+      <li>Buran adalah satu-satunya space shuttle yang berhasil mendarat sepenuhnya otomatis tanpa awak.</li>
+      <li>Hanya melakukan satu kali penerbangan, namun sukses 100% tanpa kegagalan.</li>
+      <li>Sistem komputer mampu mengambil keputusan sendiri saat terjadi perubahan kondisi cuaca.</li>
+      <li>Desainnya memungkinkan digunakan untuk misi militer maupun sipil.</li>
+    </ul>
+  </article>
+</section>
+
+
+<section id="buran-perbandingan" className="space-y-4 lg:col-span-7">
+  <article className="rounded-2xl border border-blue-300/30 bg-blue-950/20 p-5">
+    <p className="text-xs font-medium uppercase tracking-wide text-blue-200/80">
+      Analisis Komparatif
+    </p>
+    <h2 className="mt-1 text-xl font-semibold">Buran vs Space Shuttle</h2>
+    <p className="mt-2 text-white/80">
+      Meskipun secara visual terlihat mirip, Buran dan Space Shuttle memiliki
+      perbedaan mendasar dalam filosofi desain dan sistem operasional.
+    </p>
+
+    <div className="mt-3 overflow-x-auto rounded-xl border border-white/10">
+      <table className="w-full text-sm text-white/85">
+        <thead>
+          <tr className="bg-white/5 border-b border-white/20">
+            <th className="px-3 py-2">Aspek</th>
+            <th className="px-3 py-2">Buran</th>
+            <th className="px-3 py-2">Space Shuttle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Mesin utama</td>
+            <td className="px-3 py-2">Tidak ada (pakai Energia)</td>
+            <td className="px-3 py-2">Ada di orbiter</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Pilot</td>
+            <td className="px-3 py-2">Bisa tanpa awak (otomatis)</td>
+            <td className="px-3 py-2">Wajib awak manusia</td>
+          </tr>
+          <tr className="border-b border-white/10">
+            <td className="px-3 py-2">Peluncur</td>
+            <td className="px-3 py-2">Roket terpisah (Energia)</td>
+            <td className="px-3 py-2">Sistem terintegrasi</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-2">Fleksibilitas</td>
+            <td className="px-3 py-2">Tinggi (multi-misi)</td>
+            <td className="px-3 py-2">Terbatas pada Shuttle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+
 
           <article id="buran-gallery" className="rounded-2xl border border-white/15 bg-black/30 p-5 scroll-mt-28">
             <p className="text-xs font-medium uppercase tracking-wide text-white/60">Buran Gallery</p>
